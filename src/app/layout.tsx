@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
 import { Baloo_2, Poppins } from "next/font/google";
 import "./globals.css";
+import Navbar from "@/components/layout/Navbar";
+import Footer from "@/components/layout/Footer";
+import NotificationManager from "@/components/layout/NotificationManager";
 
 const baloo = Baloo_2({
   variable: "--font-baloo",
@@ -27,9 +30,14 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${baloo.variable} ${poppins.variable} font-body antialiased bg-white text-black min-h-screen`}
+        className={`${baloo.variable} ${poppins.variable} font-body antialiased bg-white text-black min-h-screen flex flex-col`}
       >
-        {children}
+        <NotificationManager />
+        <Navbar />
+        <main className="flex-grow">
+          {children}
+        </main>
+        <Footer />
       </body>
     </html>
   );

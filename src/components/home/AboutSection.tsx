@@ -38,15 +38,11 @@ export default function AboutSection() {
 
                     <div className="bg-brand-white border-4 border-brand-black rounded-3xl overflow-hidden shadow-card p-2">
                         <div className="aspect-square md:aspect-[4/3] bg-gray-200 rounded-2xl relative overflow-hidden flex items-center justify-center">
-                            {/* Fallback image placeholder to match playful design */}
-                            <div className="absolute inset-0 bg-brand-yellow/20 flex items-center justify-center">
-                                <svg width="200" height="200" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M100 0C50 0 0 50 0 100C0 150 50 200 100 200C150 200 200 150 200 100" fill="#F5B301" />
-                                    <circle cx="65" cy="85" r="15" fill="#000000" />
-                                    <circle cx="135" cy="85" r="15" fill="#000000" />
-                                    <path d="M60 130C60 130 80 160 100 160C120 160 140 130 140 130" stroke="#000000" strokeWidth="10" strokeLinecap="round" />
-                                </svg>
-                            </div>
+                            <img
+                                src="/images/about-us.jpg"
+                                alt="Danfo Bus Culture"
+                                className="w-full h-full object-cover rounded-xl"
+                            />
                         </div>
                     </div>
 
