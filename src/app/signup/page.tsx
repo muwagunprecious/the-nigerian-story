@@ -7,7 +7,9 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { UserPlus, Mail, Lock, User, Sparkles, AlertCircle, ArrowRight } from "lucide-react";
 
-export default function Signup() {
+import { Suspense } from "react";
+
+function SignupContent() {
     const router = useRouter();
     const searchParams = useSearchParams();
     const [email, setEmail] = useState("");
@@ -60,9 +62,7 @@ export default function Signup() {
                     }
                 }
 
-                // If confirmation is OFF in Supabase, session will exist
-                // If it's ON, we still redirect but they might hit a wall on next page
-                // But the user asked to "remove" it, so we act as if it's off.
+                // Redirect to dashboard
                 router.push("/dashboard");
             }
         } catch (err: any) {
@@ -168,5 +168,17 @@ export default function Signup() {
                 </div>
             </motion.div>
         </div>
+    );
+}
+
+export default function Signup() {
+    return (
+        <Suspense fallback={
+            <div className="min-h-screen bg-brand-white flex items-center justify-center">
+                <div className="animate-spin rounded-full h-12 w-12 border-4 border-brand-yellow border-t-brand-black"></div>
+            </div>
+        }>
+            <SignupContent />
+        </Suspense>
     );
 }
