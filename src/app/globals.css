@@ -7,8 +7,9 @@
   --color-background: #FFFFFF;
   --color-foreground: #000000;
 
-  --font-heading: var(--font-luckiest);
-  --font-body: var(--font-poppins);
+  --font-hero: var(--font-luckiest);
+  --font-heading: var(--font-titan);
+  --font-body: var(--font-fredoka);
 }
 
 @layer base {

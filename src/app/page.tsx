@@ -4,6 +4,7 @@ import DoYouKnow from "@/components/home/DoYouKnow";
 import StorySubmission from "@/components/home/StorySubmission";
 import StoryGallery from "@/components/home/StoryGallery";
 import GuinnessRecord from "@/components/home/GuinnessRecord";
+import ConvenerSection from "@/components/home/ConvenerSection";
 
 export default function Home() {
   return (
@@ -12,6 +13,7 @@ export default function Home() {
       <div className="w-full max-w-7xl px-4 sm:px-6 lg:px-8 space-y-24 py-24">
         <AboutSection />
         <DoYouKnow />
+        <ConvenerSection />
         <GuinnessRecord />
         <StorySubmission />
         <StoryGallery />

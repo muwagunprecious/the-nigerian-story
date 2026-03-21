@@ -39,8 +39,8 @@ export default function Navbar() {
             <div className="max-w-7xl mx-auto flex justify-between items-center">
                 <Link href="/" className="flex items-center gap-2" onClick={closeMenu}>
                     <div className="flex flex-col">
-                        <span className="font-heading text-xl md:text-2xl leading-none drop-shadow-[2px_2px_0px_#F5B301]">THE NIGERIA</span>
-                        <span className="font-heading text-brand-yellow text-2xl md:text-3xl leading-none -mt-1 drop-shadow-[2px_2px_0px_#FFFFFF]">STORY</span>
+                        <span className="font-hero text-xl md:text-2xl leading-none drop-shadow-[2px_2px_0px_#F5B301]">THE NIGERIA</span>
+                        <span className="font-hero text-brand-yellow text-2xl md:text-3xl leading-none -mt-1 drop-shadow-[2px_2px_0px_#FFFFFF]">STORY</span>
                     </div>
                 </Link>
 

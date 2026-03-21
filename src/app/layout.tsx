@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Luckiest_Guy, Poppins } from "next/font/google";
+import { Luckiest_Guy, Poppins, Titan_One, Fredoka } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
@@ -18,6 +18,18 @@ const poppins = Poppins({
   weight: ["300", "400", "500", "600", "700"],
 });
 
+const titan = Titan_One({
+  variable: "--font-titan",
+  subsets: ["latin"],
+  weight: ["400"],
+});
+
+const fredoka = Fredoka({
+  variable: "--font-fredoka",
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700"],
+});
+
 export const metadata: Metadata = {
   title: "The Nigeria Story",
   description: "Breaking Boundaries, Uniting a Nation",
@@ -31,7 +43,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${luckiest.variable} ${poppins.variable} font-body antialiased text-black min-h-screen flex flex-col relative`}
+        className={`${luckiest.variable} ${poppins.variable} ${titan.variable} ${fredoka.variable} font-body antialiased text-black min-h-screen flex flex-col relative`}
       >
         {/* Diagnostic HUD */}
         <div className="fixed top-4 left-4 z-[9999] bg-brand-yellow p-3 border-4 border-brand-black shadow-[4px_4px_0px_0px_#000] flex items-center gap-3">

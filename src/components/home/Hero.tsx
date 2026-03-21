@@ -74,7 +74,7 @@ export default function Hero() {
                     <m.span 
                         initial={{ opacity: 0, scale: 0.5 }}
                         animate={{ opacity: 1, scale: 1 }}
-                        className="font-heading text-4xl md:text-5xl lg:text-6xl text-white drop-shadow-[5px_5px_0px_#000] rotate-[-5deg] mb-[-1rem] z-20"
+                        className="font-hero text-4xl md:text-5xl lg:text-6xl text-white drop-shadow-[5px_5px_0px_#000] rotate-[-5deg] mb-[-1rem] z-20"
                     >
                         THE
                     </m.span>
@@ -82,7 +82,7 @@ export default function Hero() {
                     <m.h1 
                         initial={{ scale: 0.8, opacity: 0 }}
                         animate={{ scale: 1, opacity: 1 }}
-                        className="font-heading text-8xl md:text-[10rem] lg:text-[12rem] text-white leading-[0.75] drop-shadow-[12px_12px_0px_#000] relative z-10"
+                        className="font-hero text-8xl md:text-[10rem] lg:text-[12rem] text-white leading-[0.75] drop-shadow-[12px_12px_0px_#000] relative z-10"
                     >
                         NIGERIA
                         {/* More Scattered Doodle Dots */}
@@ -97,7 +97,7 @@ export default function Hero() {
                         initial={{ scale: 0.8, opacity: 0 }}
                         animate={{ scale: 1, opacity: 1 }}
                         transition={{ delay: 0.1 }}
-                        className="font-heading text-8xl md:text-[10rem] lg:text-[12rem] text-white leading-[0.75] drop-shadow-[12px_12px_0px_#000] mt-[-0.5rem] relative z-0"
+                        className="font-hero text-8xl md:text-[10rem] lg:text-[12rem] text-white leading-[0.75] drop-shadow-[12px_12px_0px_#000] mt-[-0.5rem] relative z-0"
                     >
                         STORY
                         <div className="absolute bottom-[20%] left-[-10%] flex gap-2 pointer-events-none opacity-80">
@@ -108,7 +108,7 @@ export default function Hero() {
                     </m.h1>
                 </div>
 
-                <div className="font-heading text-xl md:text-3xl mt-4 mb-2 tracking-wide drop-shadow-[2px_2px_0px_#000]">
+                <div className="font-hero text-xl md:text-3xl mt-4 mb-2 tracking-wide drop-shadow-[2px_2px_0px_#000]">
                     <span className="text-brand-yellow">Breaking</span>
                     <span className="text-white ml-2">Boundaries, Uniting a Nation</span>
                 </div>
