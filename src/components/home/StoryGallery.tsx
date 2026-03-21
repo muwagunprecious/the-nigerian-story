@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { ArrowRight, MapPin } from "lucide-react";
+import { SectionDecoration, FloatingDecoration } from "@/components/ui/SectionDecoration";
 
 const stories = [
     {
@@ -11,7 +12,7 @@ const stories = [
         author: "Babatunde Aliyu",
         location: "Lagos, Nigeria",
         category: "Before Independence",
-        color: "bg-brand-white",
+        color: "bg-white/80 backdrop-blur-md",
     },
     {
         id: 2,
@@ -20,7 +21,7 @@ const stories = [
         author: "Nneka Okafor",
         location: "Enugu, Nigeria",
         category: "Culture",
-        color: "bg-brand-yellow",
+        color: "bg-brand-yellow/80 backdrop-blur-md",
     },
     {
         id: 3,
@@ -29,7 +30,7 @@ const stories = [
         author: "Seyi O.",
         location: "Yaba, Lagos",
         category: "Innovation",
-        color: "bg-brand-white",
+        color: "bg-white/80 backdrop-blur-md",
     },
     {
         id: 4,
@@ -38,7 +39,7 @@ const stories = [
         author: "Mohammed Sani",
         location: "Kano, Nigeria",
         category: "After Independence",
-        color: "bg-brand-white",
+        color: "bg-white/80 backdrop-blur-md",
     },
     {
         id: 5,
@@ -47,7 +48,7 @@ const stories = [
         author: "Aisha Bello",
         location: "Zaria, Kaduna",
         category: "Community",
-        color: "bg-brand-white",
+        color: "bg-white/80 backdrop-blur-md",
     },
     {
         id: 6,
@@ -64,8 +65,30 @@ const filters = ["All", "Before Independence", "After Independence", "Culture", 
 
 export default function StoryGallery() {
     return (
-        <section id="gallery" className="w-full py-16">
-            <div className="flex flex-col md:flex-row justify-between items-end mb-12">
+        <section id="gallery" className="w-full py-16 relative">
+            {/* Cultural Background Decoration: Molded Pot */}
+            <div className="absolute -right-12 top-0 w-64 opacity-[0.03] pointer-events-none -rotate-12 translate-y-[-20%]">
+                <SectionDecoration src="/images/dashboard/pot.png" className="w-full" />
+            </div>
+
+            {/* Scattered Elements */}
+            <FloatingDecoration 
+                src="/images/dashboard/bus.png" 
+                className="top-20 left-10 w-24 opacity-20" 
+                delay={0} 
+            />
+            <FloatingDecoration 
+                src="/images/dashboard/cowries.png" 
+                className="bottom-10 right-[20%] w-20 opacity-20" 
+                delay={1.5} 
+            />
+            <FloatingDecoration 
+                src="/images/dashboard/map.png" 
+                className="top-1/2 left-[5%] w-32 opacity-10" 
+                delay={4} 
+            />
+
+            <div className="flex flex-col md:flex-row justify-between items-end mb-12 relative z-10">
                 <div className="mb-6 md:mb-0">
                     <h2 className="font-heading font-black text-4xl md:text-5xl mb-4 text-brand-black">
                         EXPLORE THE <span className="text-brand-yellow inline-block relative">

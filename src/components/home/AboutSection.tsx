@@ -1,12 +1,79 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion as m } from "framer-motion";
+
+// Inlined decorations to resolve persistent ReferenceErrors in build/HMR
+interface DecorationProps {
+    src: string;
+    className?: string;
+    delay?: number;
+    staticMode?: boolean;
+    opacity?: number;
+    blendMode?: "multiply" | "screen" | "overlay" | "normal";
+}
+
+const LocalSectionDecoration = ({ 
+    src, 
+    className = "", 
+    delay = 0, 
+    staticMode = true,
+    opacity = 0.9,
+    blendMode = "multiply"
+}: DecorationProps) => (
+    <m.img
+        src={src}
+        className={`pointer-events-none select-none drop-shadow-[0_10px_20px_rgba(0,0,0,0.3)] ${className}`}
+        style={{ mixBlendMode: blendMode }}
+        initial={staticMode ? { rotate: -5, opacity, scale: 1 } : { y: 0, rotate: 0, opacity: 0, scale: 0.8 }}
+        animate={staticMode ? { 
+            rotate: [-5, 5, -5]
+        } : { 
+            y: [-10, 10, -10],
+            rotate: [-2, 2, -2],
+            opacity: opacity,
+            scale: 1
+        }}
+        transition={{ 
+            duration: staticMode ? 7 : 6,
+            repeat: Infinity,
+            delay: delay,
+            ease: "easeInOut"
+        }}
+        alt=""
+    />
+);
+
+const LocalFloatingDecoration = ({ 
+    src, 
+    className = "", 
+    delay = 0,
+    opacity = 0.4,
+    blendMode = "multiply"
+}: DecorationProps) => (
+    <m.img
+        src={src}
+        className={`absolute pointer-events-none z-10 select-none ${className}`}
+        style={{ mixBlendMode: blendMode }}
+        initial={{ rotate: -2, opacity: 0 }}
+        animate={{ 
+            rotate: [ -2, 2, -2],
+            opacity: opacity
+        }}
+        transition={{ 
+            duration: 8,
+            repeat: Infinity,
+            delay: delay,
+            ease: "easeInOut"
+        }}
+        alt=""
+    />
+);
 
 export default function AboutSection() {
     return (
-        <section id="about" className="w-full py-16">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-                <motion.div
+        <section id="about" className="w-full py-16 relative overflow-visible">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center relative z-10">
+                <m.div
                     initial={{ opacity: 0, x: -50 }}
                     whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true }}
@@ -24,9 +91,9 @@ export default function AboutSection() {
                     <p className="font-body text-lg text-gray-700 leading-relaxed">
                         Through art, design, and participation, the project invites Nigerians to contribute to a shared narrative that showcases the country's creativity to the world. We are collecting stories that document Nigeria before and after independence.
                     </p>
-                </motion.div>
+                </m.div>
 
-                <motion.div
+                <m.div
                     initial={{ opacity: 0, x: 50 }}
                     whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true }}
@@ -46,14 +113,30 @@ export default function AboutSection() {
                         </div>
                     </div>
 
-                    {/* Decorative elements */}
-                    <div className="absolute -top-8 -right-8 animate-bounce delay-150 hidden md:block">
-                        <svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M30 0L38.4526 21.5474L60 30L38.4526 38.4526L30 60L21.5474 38.4526L0 30L21.5474 21.5474L30 0Z" fill="#F5B301" stroke="#000" strokeWidth="3" />
-                        </svg>
+                    {/* Cultural Decoration: Nok Head */}
+                    <div className="absolute -top-12 -right-12 w-32 md:w-48 hidden md:block group-hover:scale-110 transition-transform duration-700">
+                        <LocalSectionDecoration src="/images/dashboard/nok.png" className="w-full" />
                     </div>
-                </motion.div>
+
+                    {/* Additional scattered elements */}
+                    <LocalFloatingDecoration 
+                        src="/images/dashboard/cowries.png" 
+                        className="-bottom-10 -left-10 w-24 opacity-20" 
+                        delay={1} 
+                    />
+                    <LocalFloatingDecoration 
+                        src="/images/dashboard/map.png" 
+                        className="top-1/2 -right-20 w-32 opacity-10" 
+                        delay={0.5} 
+                    />
+                </m.div>
             </div>
+            
+            {/* Extreme Scattering (The start of the 200 images plan) */}
+            <LocalFloatingDecoration src="/images/dashboard/cowries.png" className="top-0 left-[20%] w-16 opacity-10" delay={0} />
+            <LocalFloatingDecoration src="/images/dashboard/nok.png" className="bottom-0 right-[30%] w-24 opacity-05" delay={2} />
+            <LocalFloatingDecoration src="/images/dashboard/bus.png" className="top-[30%] left-[5%] w-20 opacity-10 -rotate-12" delay={4} />
+            <LocalFloatingDecoration src="/images/dashboard/drum.png" className="bottom-[20%] left-[15%] w-28 opacity-05" delay={1} />
         </section>
     );
 }

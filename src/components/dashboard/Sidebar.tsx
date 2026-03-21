@@ -9,7 +9,9 @@ import {
     PlusCircle,
     LogOut,
     Menu,
-    X
+    X,
+    Video,
+    Sparkles
 } from "lucide-react";
 import { useState } from "react";
 import { supabase } from "@/lib/supabase";
@@ -17,7 +19,9 @@ import { motion, AnimatePresence } from "framer-motion";
 
 const navItems = [
     { name: "Overview", href: "/dashboard", icon: LayoutDashboard },
+    { name: "Animation Academy", href: "/dashboard/academy", icon: Video },
     { name: "My Stories", href: "/dashboard/stories", icon: BookOpen },
+    { name: "Ambassador Program", href: "/dashboard/ambassador", icon: Sparkles },
     { name: "Leaderboard", href: "/leaderboard", icon: Users },
     { name: "Submit Story", href: "/#submit", icon: PlusCircle },
 ];
@@ -28,6 +32,7 @@ export default function Sidebar() {
     const [isOpen, setIsOpen] = useState(false);
 
     const handleLogout = async () => {
+        localStorage.removeItem("NIGERIA_STORY_MOCK_MODE");
         await supabase.auth.signOut();
         router.push("/login");
     };

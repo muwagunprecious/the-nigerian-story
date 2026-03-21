@@ -90,6 +90,55 @@ export default function Login() {
                         >
                             {loading ? "Logging in..." : "Login"} <LogIn size={24} />
                         </button>
+
+                        <button
+                            type="button"
+                            onClick={async () => {
+                                const demoEmail = "demo@nigerianstory.com";
+                                const demoPass = "Nigeria123!";
+                                setEmail(demoEmail);
+                                setPassword(demoPass);
+                                setLoading(true);
+                                setError(null);
+                                
+                                try {
+                                    // 1. Try standard sign in
+                                    const { error: signInError } = await supabase.auth.signInWithPassword({
+                                        email: demoEmail,
+                                        password: demoPass
+                                    });
+
+                                    if (!signInError) {
+                                        router.push("/dashboard");
+                                        return;
+                                    }
+
+                                    // 2. Try anonymous sign in (zero friction)
+                                    console.log("Standard login failed, trying anonymous access...");
+                                    const { error: anonError } = await supabase.auth.signInAnonymously();
+                                    
+                                    if (!anonError) {
+                                        router.push("/dashboard");
+                                        return;
+                                    }
+
+                                    // 3. Absolute Fallback: Mock Mode
+                                    console.warn("Auth rate limited or disabled. Activating Mock Mode.");
+                                    localStorage.setItem("NIGERIA_STORY_MOCK_MODE", "true");
+                                    alert("Verification service is rate-limited. Activating 'Preview Mode' - you can explore the dashboard and academy, but changes won't be saved to the database.");
+                                    router.push("/dashboard");
+
+                                } catch (err: any) {
+                                    console.error("Demo Flow Error:", err);
+                                    setError("Could not establish a connection. Please try again later.");
+                                } finally {
+                                    setLoading(false);
+                                }
+                            }}
+                            className="w-full py-3 border-2 border-brand-black rounded-xl font-heading font-black text-sm uppercase hover:bg-brand-yellow/10 transition-all flex items-center justify-center gap-2"
+                        >
+                            Quick Demo Access
+                        </button>
                     </form>
 
                     <div className="mt-8 text-center border-t-2 border-dashed border-gray-100 pt-6">
@@ -99,6 +148,25 @@ export default function Login() {
                                 Signup <ArrowRight size={16} />
                             </Link>
                         </p>
+                    </div>
+                </div>
+
+                {/* Featured Universities Marquee */}
+                <div className="mt-12 overflow-hidden w-full opacity-40">
+                    <p className="text-center font-heading font-bold text-xs uppercase text-gray-400 mb-4">Supporting Students From</p>
+                    <div className="flex gap-8 animate-marquee whitespace-nowrap">
+                        {[...Array(2)].map((_, i) => (
+                            <div key={i} className="flex gap-8 items-center">
+                                <span className="font-heading font-black text-sm uppercase">Olabisi Onabanjo University</span>
+                                <span className="w-1.5 h-1.5 bg-brand-yellow rounded-full" />
+                                <span className="font-heading font-black text-sm uppercase">University of Lagos</span>
+                                <span className="w-1.5 h-1.5 bg-brand-yellow rounded-full" />
+                                <span className="font-heading font-black text-sm uppercase">University of Ibadan</span>
+                                <span className="w-1.5 h-1.5 bg-brand-yellow rounded-full" />
+                                <span className="font-heading font-black text-sm uppercase">Obafemi Awolowo University</span>
+                                <span className="w-1.5 h-1.5 bg-brand-yellow rounded-full" />
+                            </div>
+                        ))}
                     </div>
                 </div>
             </motion.div>

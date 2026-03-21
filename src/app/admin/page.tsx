@@ -4,6 +4,8 @@ import { useEffect, useState } from "react";
 import { supabase } from "@/lib/supabase";
 import { motion, AnimatePresence } from "framer-motion";
 import { Trash2, Calendar, MapPin, User, Mail, Tag, BookOpen, BarChart3, Bell, Send, Users, Smartphone } from "lucide-react";
+import { SectionDecoration, FloatingDecoration } from "@/components/ui/SectionDecoration";
+import LMSManager from "@/components/admin/LMSManager";
 
 interface Story {
     id: string;
@@ -28,6 +30,7 @@ export default function AdminDashboard() {
     const [stats, setStats] = useState<Stats>({ totalStories: 0, totalUsers: 0, totalReferrals: 0 });
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
+    const [activeTab, setActiveTab] = useState<"stories" | "academy">("stories");
 
     // Notification states
     const [notifTitle, setNotifTitle] = useState("");
@@ -131,19 +134,40 @@ export default function AdminDashboard() {
 
     if (loading) {
         return (
-            <div className="min-h-screen flex items-center justify-center bg-gray-50">
+            <div className="min-h-screen flex items-center justify-center bg-transparent">
                 <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-brand-yellow"></div>
             </div>
         );
     }
 
     return (
-        <div className="min-h-screen bg-gray-50 p-8">
-            <div className="max-w-6xl mx-auto space-y-12">
+        <div className="min-h-screen bg-transparent p-8 relative overflow-hidden">
+            {/* Background Scattering */}
+            <FloatingDecoration src="/images/dashboard/cowries.png" className="top-10 left-10 w-24 opacity-10" delay={0} />
+            <FloatingDecoration src="/images/dashboard/map.png" className="bottom-20 right-10 w-48 opacity-10" delay={2} />
+            <FloatingDecoration src="/images/dashboard/nok.png" className="top-1/2 left-[5%] w-32 opacity-05" delay={1.5} />
+            <FloatingDecoration src="/images/dashboard/attire.png" className="bottom-40 left-[10%] w-40 opacity-05" delay={3} />
+            <FloatingDecoration src="/images/dashboard/bus.png" className="top-40 right-[15%] w-36 opacity-05" delay={4} />
+
+            <div className="max-w-6xl mx-auto space-y-12 relative z-10">
                 <header className="flex justify-between items-center">
                     <div>
                         <h1 className="font-heading font-black text-4xl uppercase text-brand-black">Admin <span className="text-brand-yellow italic">Dashboard</span></h1>
                         <p className="font-body text-gray-600 mt-2">Managing the pieces of the Nigeria Story</p>
+                    </div>
+                    <div className="flex bg-brand-black p-1 rounded-2xl border-2 border-brand-black shadow-[4px_4px_0px_0px_#000]">
+                        <button 
+                            onClick={() => setActiveTab("stories")}
+                            className={`px-6 py-2 rounded-xl font-heading font-black text-sm uppercase transition-all ${activeTab === 'stories' ? 'bg-brand-yellow text-brand-black' : 'text-gray-400 hover:text-white'}`}
+                        >
+                            Stories
+                        </button>
+                        <button 
+                            onClick={() => setActiveTab("academy")}
+                            className={`px-6 py-2 rounded-xl font-heading font-black text-sm uppercase transition-all ${activeTab === 'academy' ? 'bg-brand-yellow text-brand-black' : 'text-gray-400 hover:text-white'}`}
+                        >
+                            Academy
+                        </button>
                     </div>
                 </header>
 
@@ -173,7 +197,7 @@ export default function AdminDashboard() {
                 </section>
 
                 <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-                    {/* Notifications Panel */}
+                    {/* Left Sidebar: Notifications */}
                     <section className="lg:col-span-1 space-y-6">
                         <div className="bg-brand-black p-8 rounded-3xl border-2 border-brand-black shadow-[8px_8px_0px_0px_#F5B301] text-white">
                             <h2 className="font-heading font-black text-2xl uppercase mb-6 flex items-center gap-3">
@@ -239,83 +263,84 @@ export default function AdminDashboard() {
                         </div>
                     </section>
 
-                    {/* Stories List */}
+                    {/* Right Panel: Content */}
                     <section className="lg:col-span-2 space-y-6">
-                        <h2 className="font-heading font-black text-3xl uppercase flex items-center justify-between">
-                            Stories <span>{stories.length}</span>
-                        </h2>
-                        {error && (
-                            <div className="bg-red-100 border-2 border-red-500 text-red-700 p-4 rounded-2xl mb-8 flex items-center gap-3">
-                                <span className="font-bold">Error:</span> {error}
-                            </div>
-                        )}
-
-                        <div className="grid grid-cols-1 gap-6">
-                            {stories.length === 0 ? (
-                                <div className="text-center py-24 bg-white rounded-3xl border-4 border-dashed border-gray-200">
-                                    <BookOpen size={64} className="mx-auto text-gray-300 mb-4" />
-                                    <p className="text-gray-500 font-heading font-bold text-xl">No stories collected yet.</p>
-                                </div>
-                            ) : (
-                                stories.map((story) => (
-                                    <motion.div
-                                        key={story.id}
-                                        layout
-                                        initial={{ opacity: 0, y: 20 }}
-                                        animate={{ opacity: 1, y: 0 }}
-                                        className="bg-white p-8 rounded-3xl border-2 border-brand-black shadow-[8px_8px_0px_0px_#000] hover:shadow-[12px_12px_0px_0px_#000] transition-all group"
-                                    >
-                                        <div className="flex flex-col md:flex-row justify-between gap-6">
-                                            <div className="flex-1 space-y-4">
-                                                <div className="flex flex-wrap gap-3">
-                                                    <span className="inline-flex items-center gap-1 px-3 py-1 bg-yellow-100 text-brand-black text-sm font-bold rounded-full border border-brand-yellow">
-                                                        <Tag size={14} /> {story.category}
-                                                    </span>
-                                                    <span className="inline-flex items-center gap-1 px-3 py-1 bg-gray-100 text-gray-600 text-sm rounded-full border border-gray-200">
-                                                        <Calendar size={14} /> {story.era}
-                                                    </span>
-                                                    <span className="inline-flex items-center gap-1 px-3 py-1 bg-gray-100 text-gray-600 text-sm rounded-full border border-gray-200">
-                                                        <MapPin size={14} /> {story.location}
-                                                    </span>
-                                                </div>
-
-                                                <h2 className="font-heading font-black text-2xl uppercase group-hover:text-brand-yellow transition-colors">
-                                                    {story.title}
-                                                </h2>
-
-                                                <p className="font-body text-gray-700 leading-relaxed whitespace-pre-wrap">
-                                                    {story.content}
-                                                </p>
-
-                                                <div className="flex flex-wrap gap-6 pt-4 border-t border-gray-100">
-                                                    <div className="flex items-center gap-2 text-sm text-gray-500">
-                                                        <User size={16} className="text-brand-black" />
-                                                        <span className="font-bold">{story.name}</span>
-                                                    </div>
-                                                    <div className="flex items-center gap-2 text-sm text-gray-500">
-                                                        <Mail size={16} className="text-brand-black" />
-                                                        <span>{story.email}</span>
-                                                    </div>
-                                                    <div className="flex items-center gap-2 text-sm text-gray-400 ml-auto">
-                                                        <span>Submitted on {new Date(story.created_at).toLocaleDateString()}</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <div className="md:border-l md:pl-6 flex items-start">
-                                                <button
-                                                    onClick={() => deleteStory(story.id)}
-                                                    className="p-3 bg-red-50 text-red-500 rounded-2xl hover:bg-red-500 hover:text-white transition-all border-2 border-transparent hover:border-brand-black shadow-[4px_4px_0px_0px_transparent] hover:shadow-[4px_4px_0px_0px_#000]"
-                                                    title="Delete Story"
-                                                >
-                                                    <Trash2 size={24} />
-                                                </button>
-                                            </div>
+                        {activeTab === "stories" ? (
+                            <>
+                                <h2 className="font-heading font-black text-3xl uppercase flex items-center justify-between">
+                                    Stories <span>{stories.length}</span>
+                                </h2>
+                                {error && (
+                                    <div className="bg-red-100 border-2 border-red-500 text-red-700 p-4 rounded-2xl mb-8 flex items-center gap-3">
+                                        <span className="font-bold">Error:</span> {error}
+                                    </div>
+                                )}
+                                <div className="grid grid-cols-1 gap-6">
+                                    {stories.length === 0 ? (
+                                        <div className="text-center py-24 bg-white rounded-3xl border-4 border-dashed border-gray-200">
+                                            <BookOpen size={64} className="mx-auto text-gray-300 mb-4" />
+                                            <p className="text-gray-500 font-heading font-bold text-xl">No stories collected yet.</p>
                                         </div>
-                                    </motion.div>
-                                ))
-                            )}
-                        </div>
+                                    ) : (
+                                        stories.map((story) => (
+                                            <motion.div
+                                                key={story.id}
+                                                layout
+                                                initial={{ opacity: 0, y: 20 }}
+                                                animate={{ opacity: 1, y: 0 }}
+                                                className="bg-white p-8 rounded-3xl border-2 border-brand-black shadow-[8px_8px_0px_0px_#000] hover:shadow-[12px_12px_0px_0px_#000] transition-all group"
+                                            >
+                                                <div className="flex flex-col md:flex-row justify-between gap-6">
+                                                    <div className="flex-1 space-y-4">
+                                                        <div className="flex flex-wrap gap-3">
+                                                            <span className="inline-flex items-center gap-1 px-3 py-1 bg-yellow-100 text-brand-black text-sm font-bold rounded-full border border-brand-yellow">
+                                                                <Tag size={14} /> {story.category}
+                                                            </span>
+                                                            <span className="inline-flex items-center gap-1 px-3 py-1 bg-gray-100 text-gray-600 text-sm rounded-full border border-gray-200">
+                                                                <Calendar size={14} /> {story.era}
+                                                            </span>
+                                                            <span className="inline-flex items-center gap-1 px-3 py-1 bg-gray-100 text-gray-600 text-sm rounded-full border border-gray-200">
+                                                                <MapPin size={14} /> {story.location}
+                                                            </span>
+                                                        </div>
+                                                        <h2 className="font-heading font-black text-2xl uppercase group-hover:text-brand-yellow transition-colors">
+                                                            {story.title}
+                                                        </h2>
+                                                        <p className="font-body text-gray-700 leading-relaxed whitespace-pre-wrap">
+                                                            {story.content}
+                                                        </p>
+                                                        <div className="flex flex-wrap gap-6 pt-4 border-t border-gray-100">
+                                                            <div className="flex items-center gap-2 text-sm text-gray-500">
+                                                                <User size={16} className="text-brand-black" />
+                                                                <span className="font-bold">{story.name}</span>
+                                                            </div>
+                                                            <div className="flex items-center gap-2 text-sm text-gray-500">
+                                                                <Mail size={16} className="text-brand-black" />
+                                                                <span>{story.email}</span>
+                                                            </div>
+                                                            <div className="flex items-center gap-2 text-sm text-gray-400 ml-auto">
+                                                                <span>Submitted on {new Date(story.created_at).toLocaleDateString()}</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div className="md:border-l md:pl-6 flex items-start">
+                                                        <button
+                                                            onClick={() => deleteStory(story.id)}
+                                                            className="p-3 bg-red-50 text-red-500 rounded-2xl hover:bg-red-500 hover:text-white transition-all border-2 border-transparent hover:border-brand-black shadow-[4px_4px_0px_0px_transparent] hover:shadow-[4px_4px_0px_0px_#000]"
+                                                            title="Delete Story"
+                                                        >
+                                                            <Trash2 size={24} />
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </motion.div>
+                                        ))
+                                    )}
+                                </div>
+                            </>
+                        ) : (
+                            <LMSManager />
+                        )}
                     </section>
                 </div>
             </div>

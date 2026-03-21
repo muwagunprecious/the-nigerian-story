@@ -3,7 +3,6 @@ import AboutSection from "@/components/home/AboutSection";
 import DoYouKnow from "@/components/home/DoYouKnow";
 import StorySubmission from "@/components/home/StorySubmission";
 import StoryGallery from "@/components/home/StoryGallery";
-import BrandPersonality from "@/components/home/BrandPersonality";
 import GuinnessRecord from "@/components/home/GuinnessRecord";
 
 export default function Home() {
@@ -14,7 +13,6 @@ export default function Home() {
         <AboutSection />
         <DoYouKnow />
         <GuinnessRecord />
-        <BrandPersonality />
         <StorySubmission />
         <StoryGallery />
       </div>

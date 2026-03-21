@@ -6,8 +6,8 @@
   --color-brand-white: #FFFFFF;
   --color-background: #FFFFFF;
   --color-foreground: #000000;
-  
-  --font-heading: var(--font-baloo);
+
+  --font-heading: var(--font-luckiest);
   --font-body: var(--font-poppins);
 }
 
@@ -18,8 +18,13 @@
     font-family: var(--font-body);
     overflow-x: hidden;
   }
-  
-  h1, h2, h3, h4, h5, h6 {
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     font-family: var(--font-heading);
     font-weight: 700;
   }
@@ -31,22 +36,22 @@
     border: 2px solid var(--color-brand-black);
     border-radius: 1rem;
   }
-  
+
   .shadow-card-hover {
     transition: all 0.3s ease;
   }
-  
+
   .shadow-card-hover:hover {
     box-shadow: 10px 10px 0px 0px var(--color-brand-yellow);
     transform: translate(-4px, -4px);
   }
-  
+
   /* Buttons */
   .btn-primary {
     @apply bg-brand-yellow text-brand-black font-heading font-bold py-3 px-8 rounded-full border-2 border-brand-black relative inline-flex items-center justify-center gap-2 overflow-hidden transition-all duration-300;
     box-shadow: 4px 4px 0px 0px var(--color-brand-black);
   }
-  
+
   .btn-primary:hover {
     box-shadow: 0px 0px 0px 0px var(--color-brand-black);
     transform: translate(4px, 4px);

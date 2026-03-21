@@ -5,9 +5,19 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { supabase } from "@/lib/supabase";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { UserPlus, Mail, Lock, User, Sparkles, AlertCircle, ArrowRight } from "lucide-react";
+import { UserPlus, Mail, Lock, User, Sparkles, AlertCircle, ArrowRight, School } from "lucide-react";
+import { universities, getAbbreviation } from "@/data/universities";
 
 import { Suspense } from "react";
+
+const generateReferralCode = (univAbbrev: string) => {
+    const chars = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
+    let code = "";
+    for (let i = 0; i < 6; i++) {
+        code += chars.charAt(Math.floor(Math.random() * chars.length));
+    }
+    return `${univAbbrev.toUpperCase()}-${code}`;
+};
 
 function SignupContent() {
     const router = useRouter();
@@ -15,6 +25,7 @@ function SignupContent() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [username, setUsername] = useState("");
+    const [university, setUniversity] = useState("");
     const [referralCode, setReferralCode] = useState("");
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState<string | null>(null);
@@ -29,6 +40,12 @@ function SignupContent() {
         setLoading(true);
         setError(null);
 
+        if (!university) {
+            setError("Please select your university.");
+            setLoading(false);
+            return;
+        }
+
         try {
             // 1. Sign up the user
             const { data: authData, error: authError } = await supabase.auth.signUp({
@@ -37,6 +54,7 @@ function SignupContent() {
                 options: {
                     data: {
                         username,
+                        university,
                     },
                 },
             });
@@ -44,28 +62,71 @@ function SignupContent() {
             if (authError) throw authError;
 
             if (authData.user) {
-                // 2. If there's a referral code, handle it
+                const abbrev = getAbbreviation(university);
+                const userReferralCode = generateReferralCode(abbrev);
+
+                console.log("Auth success, creating profile...");
+
+                // 2. Use UPSERT to handle race conditions with triggers
+                // We retry once if it fails
+                const createProfile = async (retry = true) => {
+                    const { error: profileError } = await supabase
+                        .from("profiles")
+                        .upsert({
+                            id: authData.user!.id,
+                            username,
+                            university,
+                            referral_code: userReferralCode
+                        });
+                    
+                    if (profileError && retry) {
+                        console.warn("Retrying profile creation...");
+                        await new Promise(r => setTimeout(r, 1000));
+                        return createProfile(false);
+                    }
+                    if (profileError) throw profileError;
+                };
+
+                await createProfile();
+                console.log("Profile created successfully");
+
+                // 3. Handle incoming referral
                 if (referralCode) {
-                    const { data: referrer } = await supabase
+                    const cleanCode = referralCode.trim().toUpperCase();
+                    console.log("Checking referral code:", cleanCode);
+
+                    const { data: referrer, error: referrerError } = await supabase
                         .from("profiles")
                         .select("id")
-                        .eq("referral_code", referralCode.toUpperCase())
+                        .eq("referral_code", cleanCode)
                         .single();
 
-                    if (referrer) {
-                        await supabase
+                    if (referrerError) {
+                        console.error("Referrer not found or error:", referrerError.message);
+                    } else if (referrer) {
+                        console.log("Found referrer:", referrer.id);
+
+                        // Attach referral to new user
+                        const { error: linkError } = await supabase
                             .from("profiles")
                             .update({ referred_by: referrer.id })
                             .eq("id", authData.user.id);
 
-                        await supabase.rpc('increment_referral_count', { referrer_id: referrer.id });
+                        if (linkError) {
+                            console.error("Failed to link referral:", linkError.message);
+                        } else {
+                            console.log("Linked referral, incrementing count...");
+                            const { error: rpcError } = await supabase.rpc('increment_referral_count', { referrer_id: referrer.id });
+                            if (rpcError) console.error("RPC error:", rpcError.message);
+                            else console.log("Referral count incremented successfully");
+                        }
                     }
                 }
 
-                // Redirect to dashboard
                 router.push("/dashboard");
             }
         } catch (err: any) {
+            console.error("Signup error:", err);
             setError(err.message);
         } finally {
             setLoading(false);
@@ -73,7 +134,7 @@ function SignupContent() {
     };
 
     return (
-        <div className="min-h-screen bg-brand-white flex items-center justify-center p-6">
+        <div className="min-h-screen bg-brand-white flex items-center justify-center p-6 py-20">
             <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -105,6 +166,24 @@ function SignupContent() {
                                 placeholder="nigerian_warrior"
                                 className="w-full px-4 py-3 bg-gray-50 border-2 border-brand-black rounded-xl focus:outline-none focus:border-brand-yellow transition-all font-body"
                             />
+                        </div>
+
+                        <div className="space-y-2">
+                            <label className="font-heading font-bold text-brand-black flex items-center gap-2">
+                                <School size={18} className="text-brand-yellow" /> University
+                            </label>
+                            <select
+                                required
+                                value={university}
+                                onChange={(e) => setUniversity(e.target.value)}
+                                className="w-full px-4 py-3 bg-gray-50 border-2 border-brand-black rounded-xl focus:outline-none focus:border-brand-yellow transition-all font-body appearance-none cursor-pointer"
+                            >
+                                <option value="">Select your university</option>
+                                {universities.map((u) => (
+                                    <option key={u.name} value={u.name}>{u.name}</option>
+                                ))}
+                                <option value="Other">Other University</option>
+                            </select>
                         </div>
 
                         <div className="space-y-2">

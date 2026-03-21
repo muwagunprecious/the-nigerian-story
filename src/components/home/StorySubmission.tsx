@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { ArrowRight, ArrowLeft, Send, Sparkles, CheckCircle2, AlertCircle, Lock, UserPlus } from "lucide-react";
 import { supabase } from "@/lib/supabase";
 import Link from "next/link";
+import { SectionDecoration, FloatingDecoration } from "@/components/ui/SectionDecoration";
 
 export default function StorySubmission() {
   const [step, setStep] = useState(1);
@@ -376,7 +377,7 @@ export default function StorySubmission() {
           )}
         </div>
 
-        <div className="bg-brand-white p-8 md:p-16 shadow-card hover:shadow-card-hover relative min-h-[500px] flex flex-col justify-between">
+        <div className="bg-white/80 backdrop-blur-xl p-8 md:p-16 shadow-card hover:shadow-card-hover relative min-h-[500px] flex flex-col justify-between border-4 border-brand-black rounded-[40px]">
           {/* Error Message */}
           <AnimatePresence>
             {error && (
@@ -433,12 +434,30 @@ export default function StorySubmission() {
             </div>
           )}
 
-          {/* Decorative Doodle */}
-          <div className="absolute -bottom-8 -left-8 text-brand-yellow hidden md:block rotate-12">
-            <svg width="80" height="80" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M30 0L38.4526 21.5474L60 30L38.4526 38.4526L30 60L21.5474 38.4526L0 30L21.5474 21.5474L30 0Z" fill="currentColor" stroke="#000" strokeWidth="2" />
-            </svg>
+          {/* Decorative Doodles */}
+          <div className="absolute -bottom-10 -left-10 w-48 opacity-10 hidden md:block rotate-12 group-hover:rotate-0 transition-transform duration-700">
+            <SectionDecoration src="/images/dashboard/drum.png" className="w-full" />
           </div>
+          
+          <div className="absolute -top-12 -right-12 w-48 opacity-10 hidden md:block -rotate-12 group-hover:rotate-0 transition-transform duration-700">
+            <SectionDecoration src="/images/dashboard/hat.png" className="w-full" />
+          </div>
+
+          <FloatingDecoration 
+            src="/images/dashboard/cowries.png" 
+            className="top-1/4 left-5 w-16 opacity-20" 
+            delay={1} 
+          />
+          <FloatingDecoration 
+            src="/images/dashboard/nok.png" 
+            className="bottom-1/4 right-5 w-24 opacity-10" 
+            delay={2} 
+          />
+          <FloatingDecoration 
+            src="/images/dashboard/palm.png" 
+            className="top-10 left-[20%] w-32 opacity-10 translate-x-[-50%]" 
+            delay={3} 
+          />
         </div>
       </motion.div>
     </section>

@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { HelpCircle, Sparkles, ChevronLeft, ChevronRight } from "lucide-react";
+import { SectionDecoration, FloatingDecoration } from "@/components/ui/SectionDecoration";
 
 const facts = [
     {
@@ -146,7 +147,29 @@ export default function DoYouKnow() {
     };
 
     return (
-        <section className="w-full py-16 relative group">
+        <section className="w-full py-16 relative group overflow-hidden">
+            {/* Cultural Background Decoration: Calabash */}
+            <div className="absolute -left-20 top-1/2 -translate-y-1/2 w-96 opacity-[0.03] pointer-events-none rotate-12">
+                <SectionDecoration src="/images/dashboard/calabash.png" className="w-full" />
+            </div>
+
+            {/* Scattered Cowries and Attire */}
+            <FloatingDecoration 
+                src="/images/dashboard/cowries.png" 
+                className="top-10 right-[10%] w-20 opacity-20" 
+                delay={2} 
+            />
+            <FloatingDecoration 
+                src="/images/dashboard/attire.png" 
+                className="bottom-20 left-[5%] w-32 opacity-10" 
+                delay={3} 
+            />
+            <FloatingDecoration 
+                src="/images/dashboard/nok.png" 
+                className="top-40 left-[15%] w-24 opacity-10 -rotate-12" 
+                delay={1} 
+            />
+
             <div className="bg-brand-black rounded-[3rem] border-4 border-brand-black overflow-hidden shadow-[12px_12px_0px_0px_#F5B301] min-h-[500px] relative">
                 <AnimatePresence initial={false} custom={direction} mode="wait">
                     <motion.div

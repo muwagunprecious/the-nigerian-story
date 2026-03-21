@@ -1,14 +1,15 @@
 import type { Metadata } from "next";
-import { Baloo_2, Poppins } from "next/font/google";
+import { Luckiest_Guy, Poppins } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import NotificationManager from "@/components/layout/NotificationManager";
+import BackgroundWall from "@/components/ui/BackgroundWall";
 
-const baloo = Baloo_2({
-  variable: "--font-baloo",
+const luckiest = Luckiest_Guy({
+  variable: "--font-luckiest",
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700", "800"],
+  weight: ["400"],
 });
 
 const poppins = Poppins({
@@ -28,13 +29,19 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body
-        className={`${baloo.variable} ${poppins.variable} font-body antialiased bg-white text-black min-h-screen flex flex-col`}
+        className={`${luckiest.variable} ${poppins.variable} font-body antialiased text-black min-h-screen flex flex-col relative`}
       >
+        {/* Diagnostic HUD */}
+        <div className="fixed top-4 left-4 z-[9999] bg-brand-yellow p-3 border-4 border-brand-black shadow-[4px_4px_0px_0px_#000] flex items-center gap-3">
+          <img src="/images/dashboard/cowries.png" className="w-8 h-8" alt="DEBUG" />
+          <span className="font-heading font-black text-xs uppercase">Heritage Sync: Active</span>
+        </div>
+        <BackgroundWall />
         <NotificationManager />
         <Navbar />
-        <main className="flex-grow">
+        <main className="flex-grow relative z-10">
           {children}
         </main>
         <Footer />
