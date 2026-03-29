@@ -12,7 +12,7 @@ const stories = [
         author: "Babatunde Aliyu",
         location: "Lagos, Nigeria",
         category: "Before Independence",
-        image: "/images/story-portrait-2.png",
+        image: "/images/stories/babatunde.png",
     },
     {
         id: 2,
@@ -21,7 +21,7 @@ const stories = [
         author: "Nneka Okafor",
         location: "Enugu, Nigeria",
         category: "Culture",
-        image: "/images/story-portrait-1.png",
+        image: "/images/stories/nneka.png",
     },
     {
         id: 3,
