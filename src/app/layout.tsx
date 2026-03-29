@@ -43,14 +43,8 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${luckiest.variable} ${poppins.variable} ${titan.variable} ${fredoka.variable} font-body antialiased text-black min-h-screen flex flex-col relative`}
+        className={`${luckiest.variable} ${poppins.variable} ${titan.variable} ${fredoka.variable} font-body antialiased bg-black text-white min-h-screen flex flex-col relative`}
       >
-        {/* Diagnostic HUD */}
-        <div className="fixed top-4 left-4 z-[9999] bg-brand-yellow p-3 border-4 border-brand-black shadow-[4px_4px_0px_0px_#000] flex items-center gap-3">
-          <img src="/images/dashboard/cowries.png" className="w-8 h-8" alt="DEBUG" />
-          <span className="font-heading font-black text-xs uppercase">Heritage Sync: Active</span>
-        </div>
-        <BackgroundWall />
         <NotificationManager />
         <Navbar />
         <main className="flex-grow relative z-10">

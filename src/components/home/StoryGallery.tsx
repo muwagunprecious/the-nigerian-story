@@ -8,154 +8,94 @@ const stories = [
     {
         id: 1,
         title: "The First Independence Day Parade",
-        preview: "I was just a small boy when the green and white flag was hoisted for the very first time. The streets of Lagos were electric...",
+        quote: "I was just a small boy when the green and white flag was hoisted for the very first time. The streets of Lagos were electric...",
         author: "Babatunde Aliyu",
         location: "Lagos, Nigeria",
         category: "Before Independence",
-        color: "bg-white/80 backdrop-blur-md",
+        image: "/images/story-portrait-2.png",
     },
     {
         id: 2,
         title: "My Grandmother's Akara Recipe",
-        preview: "Every Saturday morning, the scent of palm oil and fresh ground beans would wake the entire compound up. We gathered around...",
+        quote: "Every Saturday morning, the scent of palm oil and fresh ground beans would wake the entire compound up...",
         author: "Nneka Okafor",
         location: "Enugu, Nigeria",
         category: "Culture",
-        color: "bg-brand-yellow/80 backdrop-blur-md",
+        image: "/images/story-portrait-1.png",
     },
     {
         id: 3,
-        title: "Building the Tech Hub in Yaba",
-        preview: "It started with a few laptops and a generator that wouldn't stop smoking. We didn't know we were building a multi-million tech ecosystem...",
-        author: "Seyi O.",
-        location: "Yaba, Lagos",
-        category: "Innovation",
-        color: "bg-white/80 backdrop-blur-md",
-    },
-    {
-        id: 4,
-        title: "The 1999 Transition",
-        preview: "Standing in the sun for hours waiting to cast my vote for the first time in years. The feeling of hope was thick in the air...",
-        author: "Mohammed Sani",
-        location: "Kano, Nigeria",
-        category: "After Independence",
-        color: "bg-white/80 backdrop-blur-md",
-    },
-    {
-        id: 5,
-        title: "Durbar Festival Memories",
-        preview: "The horses were adorned in the most majestic colors I had ever seen. The sounds of the trumpets are forever etched in my mind...",
-        author: "Aisha Bello",
-        location: "Zaria, Kaduna",
-        category: "Community",
-        color: "bg-white/80 backdrop-blur-md",
-    },
-    {
-        id: 6,
-        title: "Nollywood's Golden Era",
-        preview: "Renting VHS tapes from the corner store was the highlight of our Fridays. Living In Bondage changed everything for us...",
-        author: "Chinedu E.",
-        location: "Asaba, Delta",
-        category: "Culture",
-        color: "bg-brand-yellow",
+        title: "The Legend of the Talking Drum",
+        quote: "The Gangan drum speaks a language that only the heart can truly understand. In the ancient courts of Oyo...",
+        author: "Sunday Igwee",
+        location: "Abuja, FCT",
+        category: "Tradition",
+        image: "/images/hero-leader-portrait.png",
     }
 ];
 
-const filters = ["All", "Before Independence", "After Independence", "Culture", "Community", "Innovation"];
-
 export default function StoryGallery() {
     return (
-        <section id="gallery" className="w-full py-16 relative">
-            {/* Cultural Background Decoration: Molded Pot */}
-            <div className="absolute -right-12 top-0 w-64 opacity-[0.03] pointer-events-none -rotate-12 translate-y-[-20%]">
-                <SectionDecoration src="/images/dashboard/pot.png" className="w-full" />
-            </div>
-
-            {/* Scattered Elements */}
-            <FloatingDecoration 
-                src="/images/dashboard/bus.png" 
-                className="top-20 left-10 w-24 opacity-20" 
-                delay={0} 
-            />
-            <FloatingDecoration 
-                src="/images/dashboard/cowries.png" 
-                className="bottom-10 right-[20%] w-20 opacity-20" 
-                delay={1.5} 
-            />
-            <FloatingDecoration 
-                src="/images/dashboard/map.png" 
-                className="top-1/2 left-[5%] w-32 opacity-10" 
-                delay={4} 
-            />
-
-            <div className="flex flex-col md:flex-row justify-between items-end mb-12 relative z-10">
-                <div className="mb-6 md:mb-0">
-                    <h2 className="font-heading font-black text-4xl md:text-5xl mb-4 text-brand-black">
-                        EXPLORE THE <span className="text-brand-yellow inline-block relative">
-                            STORIES
-                            <svg className="absolute -bottom-2 left-0 w-full" viewBox="0 0 100 10" preserveAspectRatio="none">
-                                <path d="M0,5 Q50,10 100,0" stroke="#000" strokeWidth="4" fill="none" strokeLinecap="round" />
-                            </svg>
-                        </span>
+        <section id="gallery" className="w-full py-24 bg-black">
+            <div className="max-w-7xl mx-auto px-6">
+                <div className="mb-16 text-left">
+                    <h2 className="font-hero text-5xl md:text-7xl text-brand-yellow mb-4 uppercase">
+                        Voices of Nigeria
                     </h2>
-                    <p className="font-body text-gray-600 text-lg max-w-2xl">
-                        Dive into thousands of stories that make up the rich tapestry of our nation's history.
+                    <p className="font-body text-gray-400 text-xl max-w-2xl">
+                        Uniting a nation through the power of our shared stories.
                     </p>
                 </div>
-            </div>
 
-            <div className="flex flex-wrap gap-3 mb-12">
-                {filters.map((filter, index) => (
-                    <button
-                        key={filter}
-                        className={`font-heading font-bold px-6 py-2 rounded-full border-2 border-brand-black transition-all shadow-[2px_2px_0px_0px_#000] hover:shadow-[0px_0px_0px_0px_#000] hover:translate-y-1 ${index === 0 ? "bg-brand-yellow text-brand-black" : "bg-brand-white text-brand-black"
-                            }`}
-                    >
-                        {filter}
-                    </button>
-                ))}
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                {stories.map((story, i) => (
-                    <motion.div
-                        key={story.id}
-                        initial={{ opacity: 0, y: 30 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.5, delay: i * 0.1 }}
-                        className={`shadow-card shadow-card-hover p-6 flex flex-col h-full ${story.color}`}
-                    >
-                        <div className="inline-block px-3 py-1 bg-brand-black text-brand-white text-xs font-bold uppercase tracking-wider rounded-full mb-4 w-max">
-                            {story.category}
-                        </div>
-
-                        <h3 className="font-heading font-black text-2xl text-brand-black mb-3">
-                            {story.title}
-                        </h3>
-
-                        <p className="font-body text-brand-black/80 mb-6 flex-grow">
-                            "{story.preview}"
-                        </p>
-
-                        <div className="flex justify-between items-end mt-auto pt-6 border-t-2 border-brand-black/20">
-                            <div>
-                                <p className="font-heading font-bold text-brand-black">{story.author}</p>
-                                <p className="font-body text-sm text-brand-black/60 flex items-center gap-1">
-                                    <MapPin size={14} /> {story.location}
-                                </p>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
+                    {stories.map((story, i) => (
+                        <motion.div
+                            key={story.id}
+                            initial={{ opacity: 0, y: 30 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ duration: 0.5, delay: i * 0.1 }}
+                            className="group relative flex flex-col bg-white/5 rounded-[2rem] overflow-hidden border border-white/10 hover:border-brand-yellow/50 transition-all"
+                        >
+                            {/* Portrait Image */}
+                            <div className="aspect-[4/5] relative overflow-hidden">
+                                <img 
+                                    src={story.image} 
+                                    className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700 scale-105 group-hover:scale-100" 
+                                    alt={story.author} 
+                                />
+                                <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-80" />
+                                
+                                <div className="absolute bottom-6 left-6 right-6">
+                                    <p className="font-heading font-black text-2xl text-white uppercase">{story.author}</p>
+                                    <p className="font-body text-sm text-brand-yellow uppercase tracking-widest flex items-center gap-1">
+                                        <MapPin size={14} /> {story.location}
+                                    </p>
+                                </div>
                             </div>
 
-                            <button className="w-10 h-10 rounded-full bg-brand-black text-brand-white flex items-center justify-center hover:bg-brand-white hover:text-brand-black hover:border-2 hover:border-brand-black transition-all">
-                                <ArrowRight size={20} />
-                            </button>
-                        </div>
-                    </motion.div>
-                ))}
-            </div>
+                            {/* Content */}
+                            <div className="p-8 flex flex-col flex-grow">
+                                <p className="font-body text-gray-300 text-lg mb-8 italic leading-relaxed">
+                                    "{story.quote}"
+                                </p>
 
-            <div className="mt-12 text-center">
-                <button className="btn-secondary text-lg">Load More Stories</button>
+                                <div className="mt-auto flex justify-between items-center">
+                                    <button className="text-brand-yellow font-heading font-black text-sm uppercase tracking-widest hover:underline flex items-center gap-2">
+                                        Read more <ArrowRight size={16} />
+                                    </button>
+                                    <span className="text-[10px] font-black uppercase text-gray-500 tracking-tighter">{story.category}</span>
+                                </div>
+                            </div>
+                        </motion.div>
+                    ))}
+                </div>
+
+                <div className="mt-20 text-center">
+                    <button className="bg-brand-yellow text-black px-12 py-4 rounded-full font-heading font-black text-xl hover:scale-105 transition-all shadow-[6px_6px_0px_0px_#FFFFFF] uppercase">
+                        Load More..
+                    </button>
+                </div>
             </div>
         </section>
     );

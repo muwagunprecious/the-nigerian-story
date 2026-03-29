@@ -39,23 +39,19 @@ export default function Navbar() {
             <div className="max-w-7xl mx-auto flex justify-between items-center">
                 <Link href="/" className="flex items-center gap-2" onClick={closeMenu}>
                     <div className="flex flex-col">
-                        <span className="font-hero text-xl md:text-2xl leading-none drop-shadow-[2px_2px_0px_#F5B301]">THE NIGERIA</span>
-                        <span className="font-hero text-brand-yellow text-2xl md:text-3xl leading-none -mt-1 drop-shadow-[2px_2px_0px_#FFFFFF]">STORY</span>
+                        <span className="font-hero text-xl md:text-2xl leading-none tracking-tighter">THE NIGERIA</span>
+                        <span className="font-hero text-brand-yellow text-2xl md:text-3xl leading-none -mt-1 tracking-tighter">STORY</span>
                     </div>
                 </Link>
 
                 {/* Desktop Menu */}
-                <div className="hidden md:flex gap-8 items-center font-heading font-bold text-lg">
+                <div className="hidden md:flex gap-8 items-center font-heading font-bold text-lg uppercase">
                     <Link href="/#about" className="hover:text-brand-yellow transition-colors">About</Link>
-                    <Link href="/leaderboard" className="hover:text-brand-yellow transition-colors flex items-center gap-2">
-                        <Trophy size={18} /> Leaderboard
-                    </Link>
+                    <Link href="/leaderboard" className="hover:text-brand-yellow transition-colors">Leaderboard</Link>
 
                     {user ? (
                         <>
-                            <Link href="/dashboard" className="hover:text-brand-yellow transition-colors flex items-center gap-2">
-                                <LayoutDashboard size={18} /> Dashboard
-                            </Link>
+                            <Link href="/dashboard" className="hover:text-brand-yellow transition-colors">Dashboard</Link>
                             <button
                                 onClick={handleLogout}
                                 className="hover:text-red-400 transition-colors flex items-center gap-2"
@@ -66,8 +62,8 @@ export default function Navbar() {
                     ) : (
                         <>
                             <Link href="/login" className="hover:text-brand-yellow transition-colors">Login</Link>
-                            <Link href="/signup" className="btn-primary">
-                                Join the Record
+                            <Link href="/signup" className="bg-brand-yellow text-brand-black px-6 py-2 rounded-full font-heading font-black hover:scale-105 transition-all shadow-[4px_4px_0px_0px_#FFFFFF]">
+                                JOIN
                             </Link>
                         </>
                     )}
@@ -134,9 +130,9 @@ export default function Navbar() {
                                     <Link
                                         href="/signup"
                                         onClick={closeMenu}
-                                        className="btn-primary text-2xl px-12 py-6"
+                                        className="bg-brand-yellow text-brand-black px-12 py-4 rounded-full font-heading font-black text-2xl hover:scale-105 transition-all shadow-[6px_6px_0px_0px_#FFFFFF] uppercase"
                                     >
-                                        Join the Record
+                                        JOIN
                                     </Link>
                                 </>
                             )}

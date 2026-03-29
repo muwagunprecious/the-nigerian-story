@@ -1,11 +1,11 @@
 @import "tailwindcss";
 
 @theme inline {
-  --color-brand-yellow: #F5B301;
+  --color-brand-yellow: #FFA500;
   --color-brand-black: #000000;
   --color-brand-white: #FFFFFF;
-  --color-background: #FFFFFF;
-  --color-foreground: #000000;
+  --color-background: #000000;
+  --color-foreground: #FFFFFF;
 
   --font-hero: var(--font-luckiest);
   --font-heading: var(--font-titan);

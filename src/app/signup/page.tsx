@@ -134,18 +134,23 @@ function SignupContent() {
     };
 
     return (
-        <div className="min-h-screen bg-brand-white flex items-center justify-center p-6 py-20">
+        <div className="min-h-screen bg-black flex items-center justify-center p-6 py-24 relative overflow-hidden">
+            {/* Background Decoration */}
+            <div className="absolute top-0 left-0 w-full h-full opacity-10 pointer-events-none">
+                <img src="/images/dashboard/pattern.png" className="w-full h-full object-cover invert" alt="" />
+            </div>
+
             <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                className="max-w-md w-full"
+                className="max-w-md w-full relative z-10"
             >
-                <div className="text-center mb-8">
-                    <h1 className="font-heading font-black text-4xl uppercase mb-2">Join the <span className="text-brand-yellow italic">Story</span></h1>
-                    <p className="font-body text-gray-600">Create an account to track your progress and refer others.</p>
+                <div className="text-center mb-10">
+                    <h1 className="font-hero text-5xl md:text-6xl uppercase mb-4 text-white leading-none">Join the <span className="text-brand-yellow">Story</span></h1>
+                    <p className="font-body text-gray-400 italic font-medium">Create your legacy in the Great Record.</p>
                 </div>
 
-                <div className="bg-white p-8 rounded-3xl border-2 border-brand-black shadow-[8px_8px_0px_0px_#000]">
+                <div className="bg-white/5 backdrop-blur-xl p-10 rounded-[3.5rem] border border-white/10 shadow-[20px_20px_60px_rgba(0,0,0,0.5)]">
                     {error && (
                         <div className="mb-6 p-4 bg-red-50 border-2 border-red-500 rounded-xl flex items-center gap-3 text-red-700">
                             <AlertCircle size={20} />
@@ -153,10 +158,10 @@ function SignupContent() {
                         </div>
                     )}
 
-                    <form onSubmit={handleSignup} className="space-y-6">
-                        <div className="space-y-2">
-                            <label className="font-heading font-bold text-brand-black flex items-center gap-2">
-                                <User size={18} /> Username
+                    <form onSubmit={handleSignup} className="space-y-8">
+                        <div className="space-y-3">
+                            <label className="text-[10px] font-black text-gray-500 uppercase tracking-widest flex items-center gap-2">
+                                <User size={14} className="text-brand-yellow" /> Username
                             </label>
                             <input
                                 type="text"
@@ -164,31 +169,31 @@ function SignupContent() {
                                 value={username}
                                 onChange={(e) => setUsername(e.target.value)}
                                 placeholder="nigerian_warrior"
-                                className="w-full px-4 py-3 bg-gray-50 border-2 border-brand-black rounded-xl focus:outline-none focus:border-brand-yellow transition-all font-body"
+                                className="w-full px-6 py-4 bg-black/40 border-2 border-white/10 rounded-2xl focus:outline-none focus:border-brand-yellow transition-all font-heading font-black text-white placeholder:text-gray-700"
                             />
                         </div>
 
-                        <div className="space-y-2">
-                            <label className="font-heading font-bold text-brand-black flex items-center gap-2">
-                                <School size={18} className="text-brand-yellow" /> University
+                        <div className="space-y-3">
+                            <label className="text-[10px] font-black text-gray-500 uppercase tracking-widest flex items-center gap-2">
+                                <School size={14} className="text-brand-yellow" /> University
                             </label>
                             <select
                                 required
                                 value={university}
                                 onChange={(e) => setUniversity(e.target.value)}
-                                className="w-full px-4 py-3 bg-gray-50 border-2 border-brand-black rounded-xl focus:outline-none focus:border-brand-yellow transition-all font-body appearance-none cursor-pointer"
+                                className="w-full px-6 py-4 bg-black/40 border-2 border-white/10 rounded-2xl focus:outline-none focus:border-brand-yellow transition-all font-heading font-black text-white appearance-none cursor-pointer"
                             >
-                                <option value="">Select your university</option>
+                                <option value="" className="text-gray-400">Select your university</option>
                                 {universities.map((u) => (
-                                    <option key={u.name} value={u.name}>{u.name}</option>
+                                    <option key={u.name} value={u.name} className="bg-black text-white">{u.name}</option>
                                 ))}
-                                <option value="Other">Other University</option>
+                                <option value="Other" className="bg-black text-white">Other University</option>
                             </select>
                         </div>
 
-                        <div className="space-y-2">
-                            <label className="font-heading font-bold text-brand-black flex items-center gap-2">
-                                <Mail size={18} /> Email Address
+                        <div className="space-y-3">
+                            <label className="text-[10px] font-black text-gray-500 uppercase tracking-widest flex items-center gap-2">
+                                <Mail size={14} className="text-brand-yellow" /> Email Address
                             </label>
                             <input
                                 type="email"
@@ -196,13 +201,13 @@ function SignupContent() {
                                 value={email}
                                 onChange={(e) => setEmail(e.target.value)}
                                 placeholder="you@example.com"
-                                className="w-full px-4 py-3 bg-gray-50 border-2 border-brand-black rounded-xl focus:outline-none focus:border-brand-yellow transition-all font-body"
+                                className="w-full px-6 py-4 bg-black/40 border-2 border-white/10 rounded-2xl focus:outline-none focus:border-brand-yellow transition-all font-heading font-black text-white placeholder:text-gray-700"
                             />
                         </div>
 
-                        <div className="space-y-2">
-                            <label className="font-heading font-bold text-brand-black flex items-center gap-2">
-                                <Lock size={18} /> Password
+                        <div className="space-y-3">
+                            <label className="text-[10px] font-black text-gray-500 uppercase tracking-widest flex items-center gap-2">
+                                <Lock size={14} className="text-brand-yellow" /> Password
                             </label>
                             <input
                                 type="password"
@@ -210,36 +215,36 @@ function SignupContent() {
                                 value={password}
                                 onChange={(e) => setPassword(e.target.value)}
                                 placeholder="••••••••"
-                                className="w-full px-4 py-3 bg-gray-50 border-2 border-brand-black rounded-xl focus:outline-none focus:border-brand-yellow transition-all font-body"
+                                className="w-full px-6 py-4 bg-black/40 border-2 border-white/10 rounded-2xl focus:outline-none focus:border-brand-yellow transition-all font-heading font-black text-white placeholder:text-gray-700"
                             />
                         </div>
 
-                        <div className="space-y-2">
-                            <label className="font-heading font-bold text-brand-black flex items-center gap-2">
-                                <Sparkles size={18} className="text-brand-yellow" /> Referral Code (Optional)
+                        <div className="space-y-3">
+                            <label className="text-[10px] font-black text-gray-500 uppercase tracking-widest flex items-center gap-2">
+                                <Sparkles size={14} className="text-brand-yellow" /> Referral Code
                             </label>
                             <input
                                 type="text"
                                 value={referralCode}
                                 onChange={(e) => setReferralCode(e.target.value)}
                                 placeholder="ABCDEF"
-                                className="w-full px-4 py-3 bg-gray-50 border-2 border-brand-black rounded-xl focus:outline-none focus:border-brand-yellow transition-all font-body uppercase"
+                                className="w-full px-6 py-4 bg-black/40 border-2 border-white/10 rounded-2xl focus:outline-none focus:border-brand-yellow transition-all font-heading font-black text-white placeholder:text-gray-700 uppercase"
                             />
                         </div>
 
                         <button
                             type="submit"
                             disabled={loading}
-                            className="btn-primary w-full py-4 text-xl flex items-center justify-center gap-2 disabled:opacity-50 shadow-[4px_4px_0px_0px_#000] active:shadow-none active:translate-x-[2px] active:translate-y-[2px] transition-all"
+                            className="w-full py-5 bg-brand-yellow text-black rounded-2xl font-heading font-black text-xl flex items-center justify-center gap-3 disabled:opacity-50 shadow-[6px_6px_0px_#FFFFFF] uppercase hover:scale-102 transition-transform active:translate-x-[2px] active:translate-y-[2px]"
                         >
                             {loading ? "Joining..." : "Join the Record"} <UserPlus size={24} />
                         </button>
                     </form>
 
-                    <div className="mt-8 text-center border-t-2 border-dashed border-gray-100 pt-6">
-                        <p className="font-body text-gray-600">
+                    <div className="mt-10 text-center border-t border-white/10 pt-8">
+                        <p className="font-body text-gray-500 italic">
                             Already have an account?{" "}
-                            <Link href="/login" className="text-brand-yellow font-black hover:underline inline-flex items-center gap-1">
+                            <Link href="/login" className="text-brand-yellow font-black hover:underline inline-flex items-center gap-1 not-italic">
                                 Login <ArrowRight size={16} />
                             </Link>
                         </p>

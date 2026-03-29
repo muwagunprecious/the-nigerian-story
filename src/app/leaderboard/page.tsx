@@ -116,32 +116,32 @@ export default function Leaderboard() {
                 <header className="text-center mb-16 relative">
                     {/* Hero Illustration: Benin Mask */}
                     <div className="absolute -top-12 -right-8 w-48 opacity-10 hidden lg:block">
-                        <SectionDecoration src="/images/dashboard/mask.png" className="w-full" />
+                        <SectionDecoration src="/images/dashboard/mask.png" className="w-full grayscale brightness-0 invert" blendMode="screen" />
                     </div>
                     
-                    <div className="inline-block px-4 py-2 bg-brand-black text-brand-white font-heading font-bold rounded-full mb-4 transform rotate-2">
+                    <div className="inline-block px-4 py-2 bg-brand-yellow text-black font-heading font-bold rounded-full mb-4 transform rotate-2">
                         Referral Rankings
                     </div>
-                    <h1 className="font-heading font-black text-5xl md:text-7xl uppercase mb-4 text-brand-black">
-                        NIGERIA <span className="text-brand-yellow italic text-stroke-black">LEGENDS</span>
+                    <h1 className="font-hero text-6xl md:text-8xl text-brand-yellow leading-tight drop-shadow-[4px_4px_0px_#000] uppercase mb-4">
+                        NIGERIA <br /> <span className="text-white drop-shadow-[4px_4px_0px_#FFA500]">LEGENDS</span>
                     </h1>
-                    <p className="font-body text-gray-600 text-xl max-w-2xl mx-auto">
-                        These are the top storytellers and community builders helping us document the record.
+                    <p className="font-body text-gray-400 text-xl max-w-2xl mx-auto italic">
+                        The top storytellers and community builders uniting our nation's history.
                     </p>
                 </header>
 
                 {/* University Filter */}
-                <div className="mb-8 flex justify-center">
-                    <div className="bg-white p-2 rounded-2xl border-2 border-brand-black shadow-[4px_4px_0px_0px_#000] flex items-center gap-2">
-                        <span className="font-heading font-bold px-4 uppercase text-sm">Filter:</span>
+                <div className="mb-12 flex justify-center">
+                    <div className="bg-white/5 backdrop-blur-md p-2 rounded-2xl border border-white/10 flex items-center gap-2 shadow-2xl">
+                        <span className="font-heading font-black px-4 uppercase text-[10px] text-gray-500 tracking-widest">Filter:</span>
                         <select 
                             value={selectedUniversity}
                             onChange={(e) => setSelectedUniversity(e.target.value)}
-                            className="px-4 py-2 bg-gray-50 border-2 border-brand-black rounded-xl font-heading font-bold outline-none cursor-pointer"
+                            className="px-6 py-2 bg-black/40 border border-white/10 rounded-xl font-heading font-black text-sm uppercase outline-none cursor-pointer text-brand-yellow focus:border-brand-yellow transition-all"
                         >
-                            <option value="All">All Universities</option>
+                            <option value="All" className="bg-black">All Universities</option>
                             {universities.map(u => (
-                                <option key={u.name} value={u.name}>{u.name}</option>
+                                <option key={u.name} value={u.name} className="bg-black text-white">{u.name}</option>
                             ))}
                         </select>
                     </div>
@@ -153,43 +153,43 @@ export default function Leaderboard() {
                         <motion.div
                             initial={{ opacity: 0, y: -20 }}
                             animate={{ opacity: 1, y: 0 }}
-                            className="bg-brand-black p-6 rounded-3xl border-2 border-brand-black shadow-[8px_8px_0px_0px_#F5B301] mb-12 flex items-center justify-between"
+                            className="bg-white/5 backdrop-blur-xl p-8 rounded-[2.5rem] border border-white/10 shadow-[20px_20px_40px_rgba(0,0,0,0.5)] mb-12 flex items-center justify-between"
                         >
                             <div className="flex items-center gap-6">
-                                <div className="w-16 h-16 rounded-2xl bg-brand-yellow flex items-center justify-center text-brand-black">
-                                    <span className="font-heading font-black text-3xl">#{userRank.rank}</span>
+                                <div className="w-16 h-16 rounded-2xl bg-brand-yellow flex items-center justify-center text-black shadow-[4px_4px_0px_#FFFFFF]">
+                                    <span className="font-hero text-3xl pt-1">#{userRank.rank}</span>
                                 </div>
                                 <div className="flex flex-col">
-                                    <span className="text-gray-400 font-heading font-bold uppercase text-[10px]">Your Rank</span>
-                                    <h3 className="text-brand-white font-heading font-black text-2xl uppercase">@{userRank.entry.username}</h3>
-                                    <span className="text-brand-yellow font-heading text-xs uppercase">{userRank.entry.university}</span>
+                                    <span className="text-gray-500 font-heading font-black uppercase text-[10px] tracking-widest">Your Legend Rank</span>
+                                    <h3 className="text-white font-hero text-3xl uppercase tracking-tighter">@{userRank.entry.username}</h3>
+                                    <span className="text-brand-yellow font-heading font-bold text-xs uppercase tracking-wide">{userRank.entry.university}</span>
                                 </div>
                             </div>
                             <div className="text-right">
-                                <p className="text-brand-yellow font-heading font-black text-3xl">{userRank.entry.total_referrals}</p>
-                                <p className="text-gray-400 font-heading font-bold uppercase text-xs">Referrals</p>
+                                <p className="text-brand-yellow font-hero text-4xl leading-none">{userRank.entry.total_referrals}</p>
+                                <p className="text-gray-500 font-heading font-black uppercase text-[10px] mt-1 tracking-widest">Referrals</p>
                             </div>
                         </motion.div>
                     )}
                 </AnimatePresence>
 
                 {/* Leaderboard List */}
-                <div className="bg-white rounded-[40px] border-4 border-brand-black shadow-[12px_12px_0px_0px_#000] overflow-hidden">
-                    <div className="p-8 border-b-4 border-brand-black bg-gray-50 flex items-center justify-between">
-                        <h2 className="font-heading font-black text-2xl uppercase flex items-center gap-3">
-                            <Trophy className="text-brand-yellow" /> Hall of Fame
+                <div className="bg-white/5 backdrop-blur-xl rounded-[3rem] border border-white/10 shadow-[20px_20px_50px_rgba(0,0,0,0.5)] overflow-hidden">
+                    <div className="p-10 border-b border-white/10 bg-white/[0.02] flex items-center justify-between">
+                        <h2 className="font-hero text-3xl uppercase flex items-center gap-4 text-brand-yellow">
+                            <Trophy className="text-white" size={32} /> Hall of Fame
                         </h2>
-                        <div className="flex items-center gap-2 text-sm font-bold text-gray-500 uppercase">
-                            <Users size={16} /> {filteredEntries.length} Heroes
+                        <div className="flex items-center gap-2 text-xs font-black text-gray-500 uppercase tracking-widest">
+                            <Users size={16} /> {filteredEntries.length} Legends
                         </div>
                     </div>
 
-                    <div className="divide-y-2 divide-gray-100">
+                    <div className="divide-y divide-white/5">
                         {filteredEntries.length === 0 ? (
-                            <div className="py-20 text-center space-y-4">
-                                <p className="font-body text-gray-400 text-xl italic font-black">No one from this university has referred yet!</p>
-                                <Link href="/dashboard" className="btn-primary inline-flex items-center gap-2">
-                                    Get your referral link <ArrowRight size={20} />
+                            <div className="py-24 text-center space-y-8">
+                                <p className="font-body text-gray-500 text-2xl italic font-medium">Be the first legend from this school!</p>
+                                <Link href="/dashboard" className="bg-brand-yellow text-black px-10 py-4 rounded-full font-heading font-black text-lg uppercase shadow-[4px_4px_0px_#FFFFFF] inline-flex items-center gap-3">
+                                    Start Referring <ArrowRight size={20} />
                                 </Link>
                             </div>
                         ) : (
@@ -199,31 +199,31 @@ export default function Leaderboard() {
                                     initial={{ opacity: 0 }}
                                     whileInView={{ opacity: 1 }}
                                     viewport={{ once: true }}
-                                    className={`p-6 flex items-center justify-between hover:bg-yellow-50 transition-colors ${entry.id === userRank?.entry.id ? 'bg-yellow-50' : ''}`}
+                                    className={`p-8 flex items-center justify-between hover:bg-white/[0.02] transition-colors ${entry.id === userRank?.entry.id ? 'bg-white/[0.05]' : ''}`}
                                 >
-                                    <div className="flex items-center gap-6">
+                                    <div className="flex items-center gap-8">
                                         <div className="w-12 flex justify-center">
                                             {getRankIcon(index + 1)}
                                         </div>
                                         <div className="flex items-center gap-4">
-                                            <div className="w-12 h-12 rounded-full border-2 border-brand-black bg-gray-100 flex items-center justify-center">
-                                                <User size={24} className="text-gray-400" />
+                                            <div className="w-14 h-14 rounded-2xl border border-white/10 bg-white/5 flex items-center justify-center">
+                                                <User size={28} className="text-gray-500" />
                                             </div>
                                             <div>
-                                                <h4 className="font-heading font-black text-lg uppercase text-brand-black leading-tight">@{entry.username}</h4>
-                                                <div className="flex flex-col">
-                                                    <span className="text-[10px] text-brand-yellow font-black uppercase">{entry.university}</span>
-                                                    {index === 0 && <span className="inline-block mt-1 text-[10px] bg-brand-yellow px-2 py-0.5 rounded-full font-black uppercase text-brand-black border border-brand-black w-fit">Top Legend</span>}
+                                                <h4 className="font-hero text-2xl uppercase text-white leading-none tracking-tighter">@{entry.username}</h4>
+                                                <div className="flex flex-col mt-1">
+                                                    <span className="text-[10px] text-brand-yellow font-black uppercase tracking-widest">{entry.university}</span>
+                                                    {index === 0 && <span className="inline-block mt-2 text-[8px] bg-brand-yellow text-black px-3 py-1 rounded-full font-black uppercase tracking-tighter shadow-[2px_2px_0px_#FFF]">Ultimate Legend</span>}
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                     <div className="text-right">
-                                        <div className="flex items-center gap-2">
-                                            <span className="font-heading font-black text-2xl text-brand-black">{entry.total_referrals}</span>
-                                            <ArrowUp size={16} className="text-green-500" />
+                                        <div className="flex items-center justify-end gap-3">
+                                            <span className="font-hero text-3xl text-brand-yellow">{entry.total_referrals}</span>
+                                            <ArrowUp size={18} className="text-green-500" />
                                         </div>
-                                        <p className="text-[10px] font-black uppercase text-gray-400">Referrals</p>
+                                        <p className="text-[10px] font-black uppercase text-gray-500 tracking-widest mt-1">Referrals</p>
                                     </div>
                                 </motion.div>
                             ))
@@ -232,18 +232,20 @@ export default function Leaderboard() {
                 </div>
 
                 {/* Call to Action */}
-                <div className="mt-12 text-center bg-brand-yellow/10 p-12 rounded-[50px] border-4 border-dashed border-brand-yellow relative overflow-hidden group">
+                <div className="mt-20 text-center bg-brand-yellow/5 p-16 rounded-[4rem] border-2 border-dashed border-brand-yellow/30 relative overflow-hidden group backdrop-blur-sm">
                     {/* Hero Illustration: Talking Drum */}
-                    <div className="absolute -top-10 -right-10 w-48 opacity-10 group-hover:opacity-20 transition-opacity">
-                        <SectionDecoration src="/images/dashboard/drum.png" className="w-full" />
+                    <div className="absolute -top-10 -right-10 w-64 opacity-10 group-hover:opacity-20 transition-opacity pointer-events-none">
+                        <SectionDecoration src="/images/dashboard/drum.png" className="w-full grayscale brightness-0 invert" blendMode="screen" />
                     </div>
 
-                    <h3 className="font-heading font-black text-3xl uppercase mb-4 relative z-10">Want to see your name here?</h3>
-                    <p className="font-body text-gray-600 mb-8 text-xl relative z-10">
+                    <h3 className="font-hero text-4xl uppercase mb-6 relative z-10 text-white leading-tight">
+                        Want to see your name <span className="text-brand-yellow">in the record?</span>
+                    </h3>
+                    <p className="font-body text-gray-400 mb-10 text-xl max-w-2xl mx-auto relative z-10 italic">
                         Every referral brings us closer to the Guinness World Record for the largest collection of Nigerian stories.
                     </p>
-                    <Link href="/dashboard" className="btn-primary inline-flex items-center gap-2 relative z-10">
-                        Start Referring Now <ArrowRight size={20} />
+                    <Link href="/dashboard" className="bg-brand-yellow text-black px-12 py-5 rounded-full font-heading font-black text-xl hover:scale-105 transition-all shadow-[6px_6px_0px_#FFFFFF] uppercase inline-flex items-center gap-3 relative z-10">
+                        Start Referring Now <ArrowRight size={24} />
                     </Link>
                 </div>
             </div>

@@ -35,18 +35,23 @@ export default function Login() {
     };
 
     return (
-        <div className="min-h-screen bg-brand-white flex items-center justify-center p-6">
+        <div className="min-h-screen bg-black flex items-center justify-center p-6 relative overflow-hidden">
+            {/* Background Decoration */}
+            <div className="absolute top-0 left-0 w-full h-full opacity-10 pointer-events-none">
+                <img src="/images/dashboard/pattern.png" className="w-full h-full object-cover invert" alt="" />
+            </div>
+
             <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                className="max-w-md w-full"
+                className="max-w-md w-full relative z-10"
             >
-                <div className="text-center mb-8">
-                    <h1 className="font-heading font-black text-4xl uppercase mb-2">Welcome <span className="text-brand-yellow italic">Back</span></h1>
-                    <p className="font-body text-gray-600">Login to your dashboard and see your referrals.</p>
+                <div className="text-center mb-10">
+                    <h1 className="font-hero text-5xl md:text-6xl uppercase mb-4 text-white leading-none">Welcome <span className="text-brand-yellow">Back</span></h1>
+                    <p className="font-body text-gray-400 italic font-medium">Verify your legacy and continue the story.</p>
                 </div>
 
-                <div className="bg-white p-8 rounded-3xl border-2 border-brand-black shadow-[8px_8px_0px_0px_#000]">
+                <div className="bg-white/5 backdrop-blur-xl p-10 rounded-[3.5rem] border border-white/10 shadow-[20px_20px_60px_rgba(0,0,0,0.5)]">
                     {error && (
                         <div className="mb-6 p-4 bg-red-50 border-2 border-red-500 rounded-xl flex items-center gap-3 text-red-700">
                             <AlertCircle size={20} />
@@ -54,10 +59,10 @@ export default function Login() {
                         </div>
                     )}
 
-                    <form onSubmit={handleLogin} className="space-y-6">
-                        <div className="space-y-2">
-                            <label className="font-heading font-bold text-brand-black flex items-center gap-2">
-                                <Mail size={18} /> Email Address
+                    <form onSubmit={handleLogin} className="space-y-8">
+                        <div className="space-y-3">
+                            <label className="text-[10px] font-black text-gray-500 uppercase tracking-widest flex items-center gap-2">
+                                <Mail size={14} className="text-brand-yellow" /> Email Address
                             </label>
                             <input
                                 type="email"
@@ -65,13 +70,13 @@ export default function Login() {
                                 value={email}
                                 onChange={(e) => setEmail(e.target.value)}
                                 placeholder="you@example.com"
-                                className="w-full px-4 py-3 bg-gray-50 border-2 border-brand-black rounded-xl focus:outline-none focus:border-brand-yellow transition-all font-body"
+                                className="w-full px-6 py-4 bg-black/40 border-2 border-white/10 rounded-2xl focus:outline-none focus:border-brand-yellow transition-all font-heading font-black text-white placeholder:text-gray-700"
                             />
                         </div>
 
-                        <div className="space-y-2">
-                            <label className="font-heading font-bold text-brand-black flex items-center gap-2">
-                                <Lock size={18} /> Password
+                        <div className="space-y-3">
+                            <label className="text-[10px] font-black text-gray-500 uppercase tracking-widest flex items-center gap-2">
+                                <Lock size={14} className="text-brand-yellow" /> Password
                             </label>
                             <input
                                 type="password"
@@ -79,14 +84,14 @@ export default function Login() {
                                 value={password}
                                 onChange={(e) => setPassword(e.target.value)}
                                 placeholder="••••••••"
-                                className="w-full px-4 py-3 bg-gray-50 border-2 border-brand-black rounded-xl focus:outline-none focus:border-brand-yellow transition-all font-body"
+                                className="w-full px-6 py-4 bg-black/40 border-2 border-white/10 rounded-2xl focus:outline-none focus:border-brand-yellow transition-all font-heading font-black text-white placeholder:text-gray-700"
                             />
                         </div>
 
                         <button
                             type="submit"
                             disabled={loading}
-                            className="btn-primary w-full py-4 text-xl flex items-center justify-center gap-2 disabled:opacity-50 shadow-[4px_4px_0px_0px_#000] active:shadow-none active:translate-x-[2px] active:translate-y-[2px] transition-all"
+                            className="w-full py-5 bg-brand-yellow text-black rounded-2xl font-heading font-black text-xl flex items-center justify-center gap-3 disabled:opacity-50 shadow-[6px_6px_0px_#FFFFFF] uppercase hover:scale-102 transition-transform active:translate-x-[2px] active:translate-y-[2px]"
                         >
                             {loading ? "Logging in..." : "Login"} <LogIn size={24} />
                         </button>
@@ -135,16 +140,16 @@ export default function Login() {
                                     setLoading(false);
                                 }
                             }}
-                            className="w-full py-3 border-2 border-brand-black rounded-xl font-heading font-black text-sm uppercase hover:bg-brand-yellow/10 transition-all flex items-center justify-center gap-2"
+                            className="w-full py-4 border border-white/20 rounded-2xl font-heading font-black text-[10px] uppercase text-gray-400 hover:bg-white/5 transition-all flex items-center justify-center gap-2 tracking-[0.2em]"
                         >
                             Quick Demo Access
                         </button>
                     </form>
 
-                    <div className="mt-8 text-center border-t-2 border-dashed border-gray-100 pt-6">
-                        <p className="font-body text-gray-600">
+                    <div className="mt-10 text-center border-t border-white/10 pt-8">
+                        <p className="font-body text-gray-500 italic">
                             Don't have an account yet?{" "}
-                            <Link href="/signup" className="text-brand-yellow font-black hover:underline inline-flex items-center gap-1">
+                            <Link href="/signup" className="text-brand-yellow font-black hover:underline inline-flex items-center gap-1 not-italic">
                                 Signup <ArrowRight size={16} />
                             </Link>
                         </p>

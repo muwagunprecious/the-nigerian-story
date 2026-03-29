@@ -3,14 +3,14 @@ import { Facebook, Twitter, Instagram, Youtube } from "lucide-react";
 
 export default function Footer() {
     return (
-        <footer className="w-full bg-brand-black text-brand-white py-16 px-6 md:px-12 mt-24 border-t-[16px] border-brand-yellow border-dashed">
+        <footer className="w-full bg-brand-black text-brand-white py-16 px-6 md:px-12 mt-24 border-t border-gray-800">
             <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-12">
                 <div className="col-span-1 md:col-span-2">
                     <div className="flex flex-col mb-6">
-                        <span className="font-heading font-black text-3xl leading-none">THE NIGERIA</span>
-                        <span className="font-heading font-black text-brand-yellow text-4xl leading-none -mt-1">STORY</span>
+                        <span className="font-hero text-3xl leading-none tracking-tighter">THE NIGERIA</span>
+                        <span className="font-hero text-brand-yellow text-4xl leading-none -mt-1 tracking-tighter">STORY</span>
                     </div>
-                    <p className="text-gray-300 font-body max-w-md">
+                    <p className="text-gray-400 font-body max-w-md">
                         A bold creative initiative designed to celebrate Nigeria's culture, creativity, and collective identity through a record-breaking storytelling experience.
                     </p>
                 </div>

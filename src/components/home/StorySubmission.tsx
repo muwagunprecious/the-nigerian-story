@@ -211,25 +211,25 @@ export default function StorySubmission() {
             className="space-y-6"
           >
             <div className="space-y-2">
-              <label className="font-heading font-bold text-lg text-brand-black">First, what's your name?</label>
+              <label className="font-heading font-bold text-lg text-white">First, what's your name?</label>
               <input
                 type="text"
                 name="name"
                 value={formData.name}
                 onChange={handleInputChange}
                 placeholder="E.g., Oluwafemi Johnson"
-                className="w-full px-6 py-4 bg-gray-50 border-2 border-brand-black rounded-2xl focus:outline-none focus:border-brand-yellow focus:ring-4 focus:ring-brand-yellow/20 transition-all font-body text-xl text-brand-black shadow-[4px_4px_0px_0px_#000]"
+                className="w-full px-6 py-4 bg-white/5 border-2 border-white/10 rounded-2xl focus:outline-none focus:border-brand-yellow focus:ring-4 focus:ring-brand-yellow/20 transition-all font-body text-xl text-white shadow-xl"
               />
             </div>
             <div className="space-y-2">
-              <label className="font-heading font-bold text-lg text-brand-black">And your email address?</label>
+              <label className="font-heading font-bold text-lg text-white">And your email address?</label>
               <input
                 type="email"
                 name="email"
                 value={formData.email}
                 onChange={handleInputChange}
                 placeholder="your@email.com"
-                className="w-full px-6 py-4 bg-gray-50 border-2 border-brand-black rounded-2xl focus:outline-none focus:border-brand-yellow focus:ring-4 focus:ring-brand-yellow/20 transition-all font-body text-xl text-brand-black shadow-[4px_4px_0px_0px_#000]"
+                className="w-full px-6 py-4 bg-white/5 border-2 border-white/10 rounded-2xl focus:outline-none focus:border-brand-yellow focus:ring-4 focus:ring-brand-yellow/20 transition-all font-body text-xl text-white shadow-xl"
               />
             </div>
           </motion.div>
@@ -244,34 +244,34 @@ export default function StorySubmission() {
             className="space-y-6"
           >
             <div className="space-y-2">
-              <label className="font-heading font-bold text-lg text-brand-black">Where in Nigeria are you from?</label>
+              <label className="font-heading font-bold text-lg text-white">Where in Nigeria are you from?</label>
               <input
                 type="text"
                 name="location"
                 value={formData.location}
                 onChange={handleInputChange}
                 placeholder="E.g., Lagos, Kano, Port Harcourt..."
-                className="w-full px-6 py-4 bg-gray-50 border-2 border-brand-black rounded-2xl focus:outline-none focus:border-brand-yellow focus:ring-4 focus:ring-brand-yellow/20 transition-all font-body text-xl text-brand-black shadow-[4px_4px_0px_0px_#000]"
+                className="w-full px-6 py-4 bg-white/5 border-2 border-white/10 rounded-2xl focus:outline-none focus:border-brand-yellow focus:ring-4 focus:ring-brand-yellow/20 transition-all font-body text-xl text-white shadow-xl"
               />
             </div>
             <div className="space-y-2">
-              <label className="font-heading font-bold text-lg text-brand-black">Which year or era does your story belong to?</label>
+              <label className="font-heading font-bold text-lg text-white">Which year or era does your story belong to?</label>
               <input
                 type="text"
                 name="era"
                 value={formData.era}
                 onChange={handleInputChange}
                 placeholder="E.g., 1960s, 1999, Present day"
-                className="w-full px-6 py-4 bg-gray-50 border-2 border-brand-black rounded-2xl focus:outline-none focus:border-brand-yellow focus:ring-4 focus:ring-brand-yellow/20 transition-all font-body text-xl text-brand-black shadow-[4px_4px_0px_0px_#000]"
+                className="w-full px-6 py-4 bg-white/5 border-2 border-white/10 rounded-2xl focus:outline-none focus:border-brand-yellow focus:ring-4 focus:ring-brand-yellow/20 transition-all font-body text-xl text-white shadow-xl"
               />
             </div>
             <div className="space-y-2">
-              <label className="font-heading font-bold text-lg text-brand-black">Pick a category</label>
+              <label className="font-heading font-bold text-lg text-white">Pick a category</label>
               <select
                 name="category"
                 value={formData.category}
                 onChange={handleInputChange}
-                className="w-full px-6 py-4 bg-gray-50 border-2 border-brand-black rounded-2xl focus:outline-none focus:border-brand-yellow focus:ring-4 focus:ring-brand-yellow/20 transition-all font-body text-xl text-brand-black appearance-none shadow-[4px_4px_0px_0px_#000]"
+                className="w-full px-6 py-4 bg-white/5 border-2 border-white/10 rounded-2xl focus:outline-none focus:border-brand-yellow focus:ring-4 focus:ring-brand-yellow/20 transition-all font-body text-xl text-white appearance-none shadow-xl"
               >
                 <option value="" disabled>Select an option...</option>
                 <option value="before-independence">Before Independence</option>
@@ -292,25 +292,25 @@ export default function StorySubmission() {
             className="space-y-6"
           >
             <div className="space-y-2">
-              <label className="font-heading font-bold text-lg text-brand-black">Give your story a title</label>
+              <label className="font-heading font-bold text-lg text-white">Give your story a title</label>
               <input
                 type="text"
                 name="title"
                 value={formData.title}
                 onChange={handleInputChange}
                 placeholder="Make it catchy!"
-                className="w-full px-6 py-4 bg-gray-50 border-2 border-brand-black rounded-2xl focus:outline-none focus:border-brand-yellow focus:ring-4 focus:ring-brand-yellow/20 transition-all font-body text-xl text-brand-black shadow-[4px_4px_0px_0px_#000]"
+                className="w-full px-6 py-4 bg-white/5 border-2 border-white/10 rounded-2xl focus:outline-none focus:border-brand-yellow focus:ring-4 focus:ring-brand-yellow/20 transition-all font-body text-xl text-white shadow-xl"
               />
             </div>
             <div className="space-y-2">
-              <label className="font-heading font-bold text-lg text-brand-black">The Story itself</label>
+              <label className="font-heading font-bold text-lg text-white">The Story itself</label>
               <textarea
                 name="content"
                 value={formData.content}
                 onChange={handleInputChange}
                 rows={6}
                 placeholder="Tell us what happened... (Nigeria is listening!)"
-                className="w-full px-6 py-4 bg-gray-50 border-2 border-brand-black rounded-2xl focus:outline-none focus:border-brand-yellow focus:ring-4 focus:ring-brand-yellow/20 transition-all font-body text-xl text-brand-black resize-none shadow-[4px_4px_0px_0px_#000]"
+                className="w-full px-6 py-4 bg-white/5 border-2 border-white/10 rounded-2xl focus:outline-none focus:border-brand-yellow focus:ring-4 focus:ring-brand-yellow/20 transition-all font-body text-xl text-white resize-none shadow-xl"
               ></textarea>
             </div>
           </motion.div>
@@ -350,24 +350,24 @@ export default function StorySubmission() {
   };
 
   return (
-    <section id="submit" className="w-full py-24">
+    <section id="submit" className="w-full py-24 bg-black">
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.6 }}
-        className="max-w-3xl mx-auto"
+        className="max-w-3xl mx-auto px-6"
       >
         <div className="text-center mb-16">
-          <div className="inline-block px-4 py-2 bg-brand-black text-brand-white font-heading font-bold rounded-full mb-4 transform -rotate-2">
+          <div className="inline-block px-4 py-2 bg-brand-yellow text-black font-heading font-bold rounded-full mb-4 transform -rotate-2">
             {isSuccess ? "Success!" : !isAuthenticated ? "Join the Record" : `Step ${step} of ${totalSteps}`}
           </div>
-          <h2 className="font-heading font-black text-5xl md:text-7xl mb-4">
-            ADD YOUR <span className="text-brand-yellow italic">STORY</span>
+          <h2 className="font-hero text-5xl md:text-7xl mb-4 text-brand-yellow uppercase">
+            ADD YOUR <span className="text-white">STORY</span>
           </h2>
           {/* Progress bar */}
           {!isSuccess && isAuthenticated && (
-            <div className="w-48 h-3 bg-gray-200 rounded-full mx-auto mt-4 border-2 border-brand-black overflow-hidden">
+            <div className="w-48 h-2 bg-white/10 rounded-full mx-auto mt-6 overflow-hidden">
               <motion.div
                 initial={{ width: 0 }}
                 animate={{ width: `${(step / totalSteps) * 100}%` }}
@@ -377,7 +377,7 @@ export default function StorySubmission() {
           )}
         </div>
 
-        <div className="bg-white/80 backdrop-blur-xl p-8 md:p-16 shadow-card hover:shadow-card-hover relative min-h-[500px] flex flex-col justify-between border-4 border-brand-black rounded-[40px]">
+        <div className="bg-white/5 backdrop-blur-xl p-8 md:p-16 border border-white/10 rounded-[3rem] relative min-h-[500px] flex flex-col justify-between shadow-2xl">
           {/* Error Message */}
           <AnimatePresence>
             {error && (
@@ -425,8 +425,8 @@ export default function StorySubmission() {
                   type="button"
                   onClick={handleSubmit}
                   disabled={isSubmitting}
-                  className="btn-primary w-full sm:flex-1 text-2xl flex items-center justify-center gap-2 ml-auto disabled:opacity-50"
-                  style={{ backgroundColor: '#F5B301' }}
+                  className="bg-brand-yellow text-black px-12 py-4 rounded-full font-heading font-black text-2xl hover:scale-105 transition-all shadow-[6px_6px_0px_0px_#FFFFFF] uppercase ml-auto disabled:opacity-50"
+                  style={{ backgroundColor: '#FFA500' }}
                 >
                   {isSubmitting ? "Submitting..." : "Submit Story"} <Send size={28} className="ml-2" />
                 </button>
