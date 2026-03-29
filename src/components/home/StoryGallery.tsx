@@ -30,7 +30,7 @@ const stories = [
         author: "Sunday Igwee",
         location: "Abuja, FCT",
         category: "Tradition",
-        image: "/images/hero-leader-portrait.png",
+        image: "/images/stories/sunday.png",
     }
 ];
 

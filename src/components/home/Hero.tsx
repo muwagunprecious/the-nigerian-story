@@ -10,7 +10,7 @@ export default function Hero() {
             {/* Main Hero Banner: AI Stylized Portrait */}
             <div className="absolute inset-0 z-0">
                 <img 
-                    src="/images/hero-leader-portrait.png" 
+                    src="/images/presidents/tinubu.png" 
                     className="w-full h-full object-cover object-top opacity-60"
                     alt="The Nigeria Story Leader"
                 />
