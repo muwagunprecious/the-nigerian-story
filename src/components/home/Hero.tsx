@@ -57,7 +57,7 @@ export default function Hero() {
                         href="#submit" 
                         className="bg-brand-yellow text-black px-12 py-5 rounded-full font-heading font-black text-2xl md:text-3xl hover:scale-105 transition-all shadow-[8px_8px_0px_0px_#FFFFFF] uppercase"
                     >
-                        Tell Us Your Nigeria Story Today
+                        Submit your story on mobile app
                     </a>
                 </motion.div>
 
