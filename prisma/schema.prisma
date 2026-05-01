@@ -1,0 +1,107 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Profile {
+  id               String   @id @default(uuid())
+  username         String?  @unique
+  university       String?
+  referral_code    String?  @unique
+  referred_by      String?
+  total_referrals  Int      @default(0)
+  created_at       DateTime @default(now())
+  updated_at       DateTime @updatedAt
+
+  stories          Story[]
+  applications     AmbassadorApplication[]
+  progress         LmsProgress[]
+
+  @@map("profiles")
+}
+
+model Story {
+  id         String   @id @default(uuid())
+  user_id    String
+  name       String?
+  email      String?
+  title      String
+  content    String
+  location   String
+  era        String
+  category   String
+  created_at DateTime @default(now())
+
+  user       Profile  @relation(fields: [user_id], references: [id])
+
+  @@map("stories")
+}
+
+model AmbassadorApplication {
+  id         String   @id @default(uuid())
+  user_id    String
+  university String
+  full_name  String
+  status     String   @default("pending")
+  created_at DateTime @default(now())
+
+  user       Profile  @relation(fields: [user_id], references: [id])
+
+  @@map("ambassador_applications")
+}
+
+model Notification {
+  id               String   @id @default(uuid())
+  user_id          String?
+  title            String
+  message          String
+  type             String
+  created_at       DateTime @default(now())
+
+  @@map("notifications")
+}
+
+model LmsModule {
+  id            String   @id @default(uuid())
+  title         String
+  description   String
+  thumbnail_url String?
+  order_index   Int      @default(0)
+  created_at    DateTime @default(now())
+
+  lessons       LmsLesson[]
+
+  @@map("lms_modules")
+}
+
+model LmsLesson {
+  id          String   @id @default(uuid())
+  module_id   String
+  title       String
+  description String?
+  video_url   String
+  duration    String?
+  order_index Int      @default(0)
+  created_at  DateTime @default(now())
+
+  module      LmsModule @relation(fields: [module_id], references: [id])
+  progress    LmsProgress[]
+
+  @@map("lms_lessons")
+}
+
+model LmsProgress {
+  user_id    String
+  lesson_id  String
+  created_at DateTime @default(now())
+
+  user       Profile   @relation(fields: [user_id], references: [id])
+  lesson     LmsLesson @relation(fields: [lesson_id], references: [id])
+
+  @@id([user_id, lesson_id])
+  @@map("lms_progress")
+}
